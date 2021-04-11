@@ -1,17 +1,34 @@
-<div class="container">
-  <form class="form-signin" #loginForm="ngForm" (ngSubmit)="login(loginForm)">
-    <div class="container-fluid">
-      <h2 class="form-signin-heading">Login</h2>
-      <div *ngIf="invalidLogin" class="alert alert-danger">Invalid username or password.</div>
-      <br/>
-      <label for="username" class="sr-only">Email address</label>
-      <input type="email" id="username" name="username" ngModel class="form-control" placeholder="User Name" required
-             autofocus>
-      <br/>
-      <label for="password" class="sr-only">Password</label>
-      <input type="password" id="password" name="password" ngModel class="form-control" placeholder="Password" required>
-      <br/>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-    </div>
-  </form>
+<div class="waveWrapper waveAnimation">
+
+  <div class="container">
+    <form class="form-signin" #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+      <div class="container-fluid">
+        <h2 class="form-signin-heading">Login</h2>
+        <div *ngIf="invalidLogin" class="alert alert-danger">Invalid username or password.</div>
+        <br/>
+        <label for="username" class="sr-only">Email address</label>
+        <input type="email" id="username" name="username" ngModel class="form-control" placeholder="User Name" required
+               autofocus>
+        <br/>
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" id="password" name="password" ngModel class="form-control" placeholder="Password"
+               required>
+        <br/>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </div>
+    </form>
+  </div>
+  <div class="waveWrapperInner bgTop">
+    <div class="wave waveTop" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>
+  </div>
+  <div class="waveWrapperInner bgMiddle">
+    <div class="wave waveMiddle"
+         style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')"></div>
+  </div>
+  <div class="waveWrapperInner bgBottom">
+    <div class="wave waveBottom"
+         style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
+  </div>
 </div>
+
+
