@@ -1,6 +1,8 @@
 <body>
-<app-main-nav></app-main-nav>
+<app-main-nav *ngIf="this.auth.isUserAuthenticated()"></app-main-nav>
 
-  <div class="container">
-  </div>
+<div class="container" >
+  <router-outlet></router-outlet>
+</div>
 </body>
+<app-footer></app-footer>

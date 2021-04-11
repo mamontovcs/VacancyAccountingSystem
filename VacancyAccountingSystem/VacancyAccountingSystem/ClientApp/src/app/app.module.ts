@@ -13,17 +13,42 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatIconModule} from '@angular/material/icon';
 import {MatListModule} from '@angular/material/list';
+import {LoginComponent} from './login/login.component';
+import {HomeComponent} from './home/home.component';
+import {JwtModule} from '@auth0/angular-jwt';
+import {VanancyListComponent} from './vanancy-list/vanancy-list.component';
+import {AuthGuard} from './guards/auth/auth-guard.guard';
+import { FooterComponent } from './footer/footer.component';
+
+export function tokenGetter() {
+  return localStorage.getItem('jwt');
+}
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainNavComponent
+    MainNavComponent,
+    LoginComponent,
+    HomeComponent,
+    VanancyListComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot([]),
+    RouterModule.forRoot([
+      {path: '', component: HomeComponent, canActivate: [AuthGuard]},
+      {path: 'login', component: LoginComponent},
+      {path: 'vacancies', component: VanancyListComponent, canActivate: [AuthGuard]}
+    ]),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ['localhost:64709'],
+        blacklistedRoutes: []
+      }
+    }),
     BrowserAnimationsModule,
     LayoutModule,
     MatToolbarModule,
