@@ -1,0 +1,21 @@
+.container {
+  text-align: center;
+  width: 30%;
+  margin-top: 75px;
+  position: relative;
+  z-index: 9998!important;
+  text-align: -webkit-center;
+}
+
+.row{
+  justify-content: space-around;
+}
+
+.btn{
+  margin-top: 5px;
+  width: 30%;
+}
+
+.form-signin-heading{
+  color: white;
+}

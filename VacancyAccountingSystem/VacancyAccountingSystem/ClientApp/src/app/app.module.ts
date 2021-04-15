@@ -19,6 +19,7 @@ import {JwtModule} from '@auth0/angular-jwt';
 import {VanancyListComponent} from './vanancy-list/vanancy-list.component';
 import {AuthGuard} from './guards/auth/auth-guard.guard';
 import { FooterComponent } from './footer/footer.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 export function tokenGetter() {
   return localStorage.getItem('jwt');
@@ -31,7 +32,8 @@ export function tokenGetter() {
     LoginComponent,
     HomeComponent,
     VanancyListComponent,
-    FooterComponent
+    FooterComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
@@ -40,7 +42,8 @@ export function tokenGetter() {
     RouterModule.forRoot([
       {path: '', component: HomeComponent, canActivate: [AuthGuard]},
       {path: 'login', component: LoginComponent},
-      {path: 'vacancies', component: VanancyListComponent, canActivate: [AuthGuard]}
+      {path: 'vacancies', component: VanancyListComponent, canActivate: [AuthGuard]},
+      {path: 'registration', component: RegistrationComponent}
     ]),
     JwtModule.forRoot({
       config: {

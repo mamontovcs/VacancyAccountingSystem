@@ -35,4 +35,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  onSignUpClick() {
+    this.router.navigate(['registration']);
+  }
 }
