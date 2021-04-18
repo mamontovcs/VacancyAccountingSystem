@@ -1,26 +1,68 @@
 <div class="waveWrapper waveAnimation">
 
   <div class="container">
-    <h2 class="form-signin-heading">Form here</h2>
-<!--    <form class="form-signin" #loginForm="ngForm" (ngSubmit)="register(loginForm)">-->
-<!--      <div class="container-fluid">-->
-<!--        <h2 class="form-signin-heading">Registration</h2>-->
-<!--        <div  class="alert alert-danger">Invalid username or password.</div>-->
-<!--        <br/>-->
-<!--        <label for="username" class="sr-only">Email address</label>-->
-<!--        <input type="email" id="username" name="username" ngModel class="form-control" placeholder="User Name" required-->
-<!--               autofocus>-->
-<!--        <br/>-->
-<!--        <label for="password" class="sr-only">Password</label>-->
-<!--        <input type="password" id="password" name="password" ngModel class="form-control" placeholder="Password"-->
-<!--               required>-->
-<!--        <br/>-->
-<!--        <div class="row">-->
-<!--          <button class="btn btn-lg btn-primary col-md-4" type="submit">Sign in</button>-->
-<!--          <button class="btn btn-lg btn-primary col-md-4" type="button">Sign up</button>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </form>-->
+    <div class="registrationIntro">
+      <h2 class="form-signin-heading">Registration</h2>
+      <mat-radio-group
+        aria-labelledby="example-radio-group-label"
+        class=""
+        [(ngModel)]="accountType" [ngModelOptions]="{standalone: true}">
+        <mat-radio-button class="example-radio-button" *ngFor="let type of accountTypes" [value]="type">
+          {{type}}
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <form [formGroup]="specialistRegistrationForm" *ngIf="accountType == 'Specialist'"
+          (ngSubmit)="register()" >
+
+      <div>
+        <label for="pass">Photo:</label>
+        <button onclick="document.getElementById('photo').click()">Upload photo</button>
+        <input type='file' id="photo" style="display:none">
+      </div>
+
+      <div id="mainInfo">
+        <label for="email">Email: </label>
+        <input type="text" id="email" formControlName="Email"/>
+        <label for="pass">Password:</label>
+        <input type="text" id="pass" formControlName="Password"/>
+        <label for="salary">Salary: </label>
+        <input type="text" id="salary" formControlName="DesiredSalary"/>
+        <label for="exp">Skype:</label>
+        <input type="text" id="exp" formControlName="YearsOfExperience"/>
+        <label for="skype">Skype: </label>
+        <input type="text" id="skype" formControlName="Skype"/>
+        <label for="city">City: </label>
+        <input type="text" id="city" formControlName="City"/>
+        <label for="tech">Technologies: </label>
+        <input type="text" id="tech" formControlName="Technologies"/>
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" formControlName="PhoneNumber"/>
+      </div>
+
+      <div id="selectInfo">
+        <mat-form-field appearance="fill">
+          <mat-label>English level</mat-label>
+          <mat-select formControlName="EnglishLevel">
+            <mat-option *ngFor="let englishLevel of englishLevels" [value]="englishLevel">
+              {{englishLevel}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" >
+          <mat-label>Employment options</mat-label>
+          <mat-select formControlName="EmploymentOption">
+            <mat-option *ngFor="let employmentOption of employmentOptions" [value]="employmentOption">
+              {{employmentOption}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+
+      <button class="btn btn-lg btn-primary col-md-6" type="submit">Register</button>
+    </form>
   </div>
   <div class="waveWrapperInner bgTop">
     <div class="wave waveTop" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>

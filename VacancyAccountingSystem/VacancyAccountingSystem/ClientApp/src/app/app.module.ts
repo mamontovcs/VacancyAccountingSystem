@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 
@@ -18,8 +18,9 @@ import {HomeComponent} from './home/home.component';
 import {JwtModule} from '@auth0/angular-jwt';
 import {VanancyListComponent} from './vanancy-list/vanancy-list.component';
 import {AuthGuard} from './guards/auth/auth-guard.guard';
-import { FooterComponent } from './footer/footer.component';
-import { RegistrationComponent } from './registration/registration.component';
+import {FooterComponent} from './footer/footer.component';
+import {RegistrationComponent} from './registration/registration.component';
+import {MatFormFieldModule, MatOptionModule, MatRadioModule, MatSelectModule} from '@angular/material';
 
 export function tokenGetter() {
   return localStorage.getItem('jwt');
@@ -58,7 +59,12 @@ export function tokenGetter() {
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatRadioModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatOptionModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

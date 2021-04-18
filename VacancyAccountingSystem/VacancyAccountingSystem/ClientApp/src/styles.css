@@ -88,3 +88,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .waveAnimation .waveBottom {
   animation: move_wave 15s linear infinite;
 }
+
+.cdk-overlay-container, .cdk-overlay-pane {
+  z-index: 9999 !important;
+}
