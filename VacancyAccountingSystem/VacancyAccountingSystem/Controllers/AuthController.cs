@@ -26,8 +26,14 @@ namespace VacancyAccountingSystem.Controllers
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Vacancy@Accounting@System@Key"));
                 var credentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
 
+                var claims = new List<Claim>()
+                {
+                    new Claim(ClaimTypes.Name, login.UserName),
+                    new Claim(ClaimTypes.Role, "Manager")
+                };
+
                 var token = new JwtSecurityToken("http://localhost:64709", "http://localhost:64709",
-                    new List<Claim>(), null, DateTime.Now.AddMinutes(5), credentials);
+                    new List<Claim>(), null, DateTime.Now.AddMinutes(30), credentials);
 
                 var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
                 return Ok(new { Token = tokenString });

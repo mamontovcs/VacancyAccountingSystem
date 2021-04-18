@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 namespace VacancyAccountingSystem.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/vacansies")]
     public class HomeController : ControllerBase
     {
-        [HttpGet]
+        [HttpGet, Route("get")]
+        [Authorize(Roles = "Manager")]
         [Authorize]
         public IEnumerable<string> Get() => new string[] { "C1", "C2" };
     }
