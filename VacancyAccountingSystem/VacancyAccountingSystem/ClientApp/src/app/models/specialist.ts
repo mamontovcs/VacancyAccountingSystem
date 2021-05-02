@@ -3,7 +3,8 @@ export class Specialist {
 
   constructor(Email: string, Password: string, DesiredSalary: number, YearsOfExperience: number,
               City: string, Technologies: string, EnglishLevel: string,
-              EmploymentOptions: string, PhoneNumber: string, Skype: string) {
+              EmploymentOptions: string, PhoneNumber: string, Skype: string, PhotoPath: string, 
+              Name: string, Surname: string) {
     this.Email = Email;
     this.Password = Password;
     this.DesiredSalary = DesiredSalary;
@@ -14,8 +15,13 @@ export class Specialist {
     this.EmploymentOptions = EmploymentOptions;
     this.PhoneNumber = PhoneNumber;
     this.Skype = Skype;
+    this.PhotoPath = PhotoPath;
+    this.Name = Name;
+    this.Surname = Surname;
   }
 
+  Name: string;
+  Surname: string;
   Email: string;
   Password: string;
   DesiredSalary: number;
@@ -26,4 +32,5 @@ export class Specialist {
   EmploymentOptions: string;
   PhoneNumber: string;
   Skype: string;
+  PhotoPath: string;
 }

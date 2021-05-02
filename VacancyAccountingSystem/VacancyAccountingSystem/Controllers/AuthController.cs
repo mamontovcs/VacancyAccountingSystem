@@ -32,12 +32,16 @@ namespace VacancyAccountingSystem.Controllers
                     new Claim(ClaimTypes.Role, "Manager")
                 };
 
-                var token = new JwtSecurityToken("http://localhost:64709", "http://localhost:64709",
-                    new List<Claim>(), null, DateTime.Now.AddMinutes(30), credentials);
+                var token = new JwtSecurityToken(
+                    "http://localhost:64709",
+                    "http://localhost:64709",
+                    claims,
+                    null,
+                    DateTime.Now.AddMinutes(30),
+                    credentials);
 
                 var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
                 return Ok(new { Token = tokenString });
-
             }
 
             return Unauthorized();

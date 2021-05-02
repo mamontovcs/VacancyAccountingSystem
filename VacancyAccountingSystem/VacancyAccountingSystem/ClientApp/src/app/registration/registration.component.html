@@ -1,80 +1,77 @@
 <div class="waveWrapper waveAnimation">
 
-  <div class="container">
-    <div class="registrationIntro">
-      <h2 class="form-signin-heading">Registration</h2>
-      <mat-radio-group
-        aria-labelledby="example-radio-group-label"
-        class=""
-        [(ngModel)]="accountType" [ngModelOptions]="{standalone: true}">
-        <mat-radio-button class="example-radio-button" *ngFor="let type of accountTypes" [value]="type">
-          {{type}}
-        </mat-radio-button>
-      </mat-radio-group>
+    <div class="container">
+        <div class="registrationIntro">
+            <h2 class="form-signin-heading">Registration</h2>
+            <mat-radio-group aria-labelledby="example-radio-group-label" class="" [(ngModel)]="accountType" [ngModelOptions]="{standalone: true}">
+                <mat-radio-button class="example-radio-button" *ngFor="let type of accountTypes" [value]="type">
+                    {{type}}
+                </mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <form [formGroup]="specialistRegistrationForm" *ngIf="accountType == 'Specialist'" (ngSubmit)="register()">
+
+            <div>
+                <label for="pass">Photo:</label>
+                <input type="file" #file placeholder="Choose file" accept="image/jpeg,image/png" (change)="OnFileSelected($event)" style="display:none;">
+                <button type="button" class="btn btn-success" (click)="file.click()">Upload File</button>
+            </div>
+
+            <div id="mainInfo">
+                <label for="text">Name: </label>
+                <input type="text" id="text" formControlName="Name" />
+                <label for="text">Surname: </label>
+                <input type="text" id="text" formControlName="Surname" />
+
+                <label for="email">Email: </label>
+                <input type="text" id="email" formControlName="Email" />
+                <label for="pass">Password:</label>
+                <input type="text" id="pass" formControlName="Password" />
+                <label for="salary">Salary: </label>
+                <input type="text" id="salary" formControlName="DesiredSalary" />
+                <label for="exp">Years of experience:</label>
+                <input type="text" id="exp" formControlName="YearsOfExperience" />
+                <label for="skype">Skype: </label>
+                <input type="text" id="skype" formControlName="Skype" />
+                <label for="city">City: </label>
+                <input type="text" id="city" formControlName="City" />
+                <label for="tech">Technologies: </label>
+                <input type="text" id="tech" formControlName="Technologies" />
+                <label for="phone">Phone:</label>
+                <input type="text" id="phone" formControlName="PhoneNumber" />
+            </div>
+
+            <div id="selectInfo">
+                <mat-form-field appearance="fill">
+                    <mat-label>English level</mat-label>
+                    <mat-select formControlName="EnglishLevel">
+                        <mat-option *ngFor="let englishLevel of englishLevels" [value]="englishLevel">
+                            {{englishLevel}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Employment options</mat-label>
+                    <mat-select formControlName="EmploymentOption">
+                        <mat-option *ngFor="let employmentOption of employmentOptions" [value]="employmentOption">
+                            {{employmentOption}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+
+            <button class="btn btn-lg btn-primary col-md-6" type="submit">Register</button>
+        </form>
     </div>
-    <form [formGroup]="specialistRegistrationForm" *ngIf="accountType == 'Specialist'"
-          (ngSubmit)="register()" >
-
-      <div>
-        <label for="pass">Photo:</label>
-        <button onclick="document.getElementById('photo').click()">Upload photo</button>
-        <input type='file' id="photo" style="display:none">
-      </div>
-
-      <div id="mainInfo">
-        <label for="email">Email: </label>
-        <input type="text" id="email" formControlName="Email"/>
-        <label for="pass">Password:</label>
-        <input type="text" id="pass" formControlName="Password"/>
-        <label for="salary">Salary: </label>
-        <input type="text" id="salary" formControlName="DesiredSalary"/>
-        <label for="exp">Skype:</label>
-        <input type="text" id="exp" formControlName="YearsOfExperience"/>
-        <label for="skype">Skype: </label>
-        <input type="text" id="skype" formControlName="Skype"/>
-        <label for="city">City: </label>
-        <input type="text" id="city" formControlName="City"/>
-        <label for="tech">Technologies: </label>
-        <input type="text" id="tech" formControlName="Technologies"/>
-        <label for="phone">Phone:</label>
-        <input type="text" id="phone" formControlName="PhoneNumber"/>
-      </div>
-
-      <div id="selectInfo">
-        <mat-form-field appearance="fill">
-          <mat-label>English level</mat-label>
-          <mat-select formControlName="EnglishLevel">
-            <mat-option *ngFor="let englishLevel of englishLevels" [value]="englishLevel">
-              {{englishLevel}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill" >
-          <mat-label>Employment options</mat-label>
-          <mat-select formControlName="EmploymentOption">
-            <mat-option *ngFor="let employmentOption of employmentOptions" [value]="employmentOption">
-              {{employmentOption}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-
-
-      <button class="btn btn-lg btn-primary col-md-6" type="submit">Register</button>
-    </form>
-  </div>
-  <div class="waveWrapperInner bgTop">
-    <div class="wave waveTop" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>
-  </div>
-  <div class="waveWrapperInner bgMiddle">
-    <div class="wave waveMiddle"
-         style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')"></div>
-  </div>
-  <div class="waveWrapperInner bgBottom">
-    <div class="wave waveBottom"
-         style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
-  </div>
+    <div class="waveWrapperInner bgTop">
+        <div class="wave waveTop" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>
+    </div>
+    <div class="waveWrapperInner bgMiddle">
+        <div class="wave waveMiddle" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')"></div>
+    </div>
+    <div class="waveWrapperInner bgBottom">
+        <div class="wave waveBottom" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
+    </div>
 </div>
-
-

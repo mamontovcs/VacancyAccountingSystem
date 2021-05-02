@@ -1,61 +1,61 @@
 label {
-  width: 100px;
-  color: white;
-  display: inline-block;
+    width: 100px;
+    color: white;
+    display: inline-block;
 }
 
 body div.cdk-overlay-container {
-  z-index: 1000000;
+    z-index: 1000000;
 }
 
 input {
-  margin-top: 5px;
-  margin-left: 15px;
+    margin-top: 5px;
+    margin-left: 15px;
 }
 
 .mat-form-field {
-  margin-top: 10px;
-  margin-left: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
 }
 
 .container {
-  text-align: center;
-  width: 30%;
-  margin-top: 50px;
-  position: relative;
-  z-index: 9998 !important;
-  text-align: -webkit-center;
+    text-align: center;
+    width: 30%;
+    margin-top: 50px;
+    position: relative;
+    z-index: 9998 !important;
+    text-align: -webkit-center;
 }
 
 #mainInfo {
-  width: 380px;
-  height: 280px;
+    width: 380px;
+    height: 280px;
 }
 
 #selectInfo {
-  margin-top: 40px;
+    margin-top: 150px;
 }
 
 .row {
-  justify-content: space-around;
+    justify-content: space-around;
 }
 
 .btn {
-  margin-top: 5px;
-  width: 30%;
+    margin-top: 5px;
+    width: 30%;
 }
 
 .form-signin-heading {
-  color: white;
+    color: white;
 }
 
 .example-radio-group {
-  display: flex;
-  flex-direction: row;
-  margin: 15px 0;
+    display: flex;
+    flex-direction: row;
+    margin: 15px 0;
 }
 
 .example-radio-button {
-  margin: 20px;
-  color: white;
+    margin: 20px;
+    color: white;
 }

@@ -13,7 +13,6 @@ namespace VacancyAccountingSystem.Controllers
     {
         [HttpGet, Route("get")]
         [Authorize(Roles = "Manager")]
-        [Authorize]
         public IEnumerable<string> Get() => new string[] { "C1", "C2" };
     }
 }

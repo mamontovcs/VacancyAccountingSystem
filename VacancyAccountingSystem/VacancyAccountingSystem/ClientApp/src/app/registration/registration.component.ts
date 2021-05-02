@@ -29,10 +29,12 @@ export class RegistrationComponent implements OnInit {
   employmentOptions: string[] = ['Work from home', 'Full time', 'Part time'];
 
   onChange: Function;
-  private photo: File | null = null;
+  private photo = null;
 
   ngOnInit() {
     this.specialistRegistrationForm = this.formBuilder.group({
+      Surname: new FormControl(''),
+      Name: new FormControl(''),
       Photo: new FormControl(null, [Validators.required]),
       Email: new FormControl(''),
       Password: new FormControl(''),
@@ -49,10 +51,9 @@ export class RegistrationComponent implements OnInit {
     this.specialistRegistrationForm.reset();
   }
 
-  @HostListener('change', ['$event.target.files']) emitFiles(event: FileList) {
-    const file = event && event.item(0);
-    this.onChange(file);
-    this.photo = file;
+  OnFileSelected(event) {
+    console.log(event);
+    this.photo = <File>event.target.files[0];
   }
 
   register() {
@@ -68,16 +69,30 @@ export class RegistrationComponent implements OnInit {
         this.specialistRegistrationForm.controls.EmploymentOption.value,
         this.specialistRegistrationForm.controls.PhoneNumber.value,
         this.specialistRegistrationForm.controls.Skype.value,
+        this.photo.name,
+        this.specialistRegistrationForm.controls.Name.value,
+        this.specialistRegistrationForm.controls.Surname.value
       );
 
       console.log(this.specialist);
 
-      this.http.post('http://localhost:64709/api/register/reg', JSON.stringify(this.specialist), {
+      this.http.post('http://localhost:64709/api/register/specialist', JSON.stringify(this.specialist), {
         headers: new HttpHeaders({
           'Content-Type': 'application/json'
         })
-      }).subscribe(response => {
-        console.log('hi');
+      }).subscribe(() => {
+        console.log('posted');
+      }, err => {
+        console.log(err);
+      });
+
+      const formData = new FormData();
+      const fileExtension = this.photo.name.split('?')[0].split('.').pop();
+      console.log(fileExtension);
+      formData.append('file', this.photo, this.specialist.Email + '.' + fileExtension);
+      this.http.post('http://localhost:64709/api/register/photo', formData
+      ).subscribe(() => {
+        console.log('uploaded');
       }, err => {
         console.log(err);
       });
