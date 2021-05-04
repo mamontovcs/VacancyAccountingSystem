@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
@@ -12,6 +13,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using System.IO;
 using System.Text;
+using VacancyAccountingSystem.Data;
+using VacancyAccountingSystem.Repositories;
 
 namespace VacancyAccountingSystem
 {
@@ -27,6 +30,9 @@ namespace VacancyAccountingSystem
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<DatabaseContext>(
+            options => options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=VacancyAccountingSystem;Trusted_Connection=True;"));
+
             services.AddCors(opt =>
             {
                 opt.AddPolicy("EnableCORS", builder =>
@@ -37,7 +43,8 @@ namespace VacancyAccountingSystem
                 });
             });
 
-            services.Configure<FormOptions>(o => {
+            services.Configure<FormOptions>(o =>
+            {
                 o.ValueLengthLimit = int.MaxValue;
                 o.MultipartBodyLengthLimit = int.MaxValue;
                 o.MemoryBufferThreshold = int.MaxValue;
@@ -69,6 +76,8 @@ namespace VacancyAccountingSystem
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Vacancy@Accounting@System@Key"))
                     };
                 });
+
+            services.AddScoped<IVacancyRepository, VacancyRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
