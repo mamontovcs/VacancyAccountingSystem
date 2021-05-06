@@ -64,6 +64,31 @@
 
             <button class="btn btn-lg btn-primary col-md-6" type="submit">Register</button>
         </form>
+        <form [formGroup]="companyRegistrationForm" *ngIf="accountType == 'Company'" (ngSubmit)="register()">
+
+            <div>
+                <label for="pass">Photo:</label>
+                <input type="file" #file placeholder="Choose file" accept="image/jpeg,image/png" (change)="OnFileSelected($event)" style="display:none;">
+                <button type="button" class="btn btn-success" (click)="file.click()">Upload File</button>
+            </div>
+
+            <div id="mainInfo">
+                <label for="text">Name: </label>
+                <input type="text" id="text" formControlName="Name" />
+                <label for="email">Website: </label>
+                <input type="text" id="text" formControlName="Website" />
+                <label for="email">Email: </label>
+                <input type="text" id="email" formControlName="Email" />
+                <label for="pass">Password:</label>
+                <input type="text" id="pass" formControlName="Password" />
+                <label for="text">About: </label>
+                <textarea type="text" id="text" formControlName="AboutCompany"></textarea>
+            </div>
+
+
+
+            <button class="btn btn-lg btn-primary col-md-6" type="submit">Register</button>
+        </form>
     </div>
     <div class="waveWrapperInner bgTop">
         <div class="wave waveTop" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>

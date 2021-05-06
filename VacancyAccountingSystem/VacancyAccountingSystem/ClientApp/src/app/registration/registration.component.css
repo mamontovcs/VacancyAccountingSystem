@@ -4,6 +4,12 @@ label {
     display: inline-block;
 }
 
+textarea {
+    resize: none;
+    width: 380px;
+    height: 100px;
+}
+
 body div.cdk-overlay-container {
     z-index: 1000000;
 }
@@ -41,7 +47,7 @@ input {
 }
 
 .btn {
-    margin-top: 5px;
+    margin-top: 20px;
     width: 30%;
 }
 

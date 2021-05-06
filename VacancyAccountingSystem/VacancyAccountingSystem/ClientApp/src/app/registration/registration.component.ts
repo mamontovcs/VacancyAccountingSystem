@@ -18,6 +18,7 @@ export class RegistrationComponent implements OnInit {
   specialist: Specialist;
 
   specialistRegistrationForm: FormGroup;
+  companyRegistrationForm: FormGroup;
 
   accountType: string;
   englishLevel: string;
@@ -48,7 +49,16 @@ export class RegistrationComponent implements OnInit {
       Skype: new FormControl(''),
     });
 
-    this.specialistRegistrationForm.reset();
+    this.companyRegistrationForm = this.formBuilder.group({
+      Name: new FormControl(''),
+      AboutCompany: new FormControl(''),
+      Photo: new FormControl(null, [Validators.required]),
+      Website: new FormControl(''),
+      Email: new FormControl(''),
+      Password: new FormControl('')
+    });
+
+    this.companyRegistrationForm.reset();
   }
 
   OnFileSelected(event) {
@@ -98,6 +108,10 @@ export class RegistrationComponent implements OnInit {
       });
 
       this.specialistRegistrationForm.reset();
+    }
+
+    if (this.accountType === 'Company') {
+      console.log(this.companyRegistrationForm);
     }
 
   }
