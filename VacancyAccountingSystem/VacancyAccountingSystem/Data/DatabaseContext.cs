@@ -11,10 +11,5 @@ namespace VacancyAccountingSystem.Data
 
         }
         public DbSet<Vacancy> Vacancies { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            // optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=VacancyAccountingSystem;Trusted_Connection=True;");
-        }
     }
 }

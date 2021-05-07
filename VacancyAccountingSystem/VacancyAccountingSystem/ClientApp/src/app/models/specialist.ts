@@ -1,6 +1,4 @@
 export class Specialist {
-
-
   constructor(Email: string, Password: string, DesiredSalary: number, YearsOfExperience: number,
               City: string, Technologies: string, EnglishLevel: string,
               EmploymentOptions: string, PhoneNumber: string, Skype: string, PhotoPath: string, 
@@ -19,7 +17,6 @@ export class Specialist {
     this.Name = Name;
     this.Surname = Surname;
   }
-
   Name: string;
   Surname: string;
   Email: string;

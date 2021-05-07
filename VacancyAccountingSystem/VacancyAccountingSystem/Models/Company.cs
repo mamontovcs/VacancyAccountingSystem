@@ -13,6 +13,9 @@ namespace VacancyAccountingSystem.Models
 
         public string Name { get; set; }
 
+        public string Email { get; set; }
+        public string Password { get; set; }
+
         public List<Vacancy> OpenedVacancies { get; set; }
 
         public string AboutCompany { get; set; }

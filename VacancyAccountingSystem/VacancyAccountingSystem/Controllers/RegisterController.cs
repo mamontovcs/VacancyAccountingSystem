@@ -20,7 +20,7 @@ namespace VacancyAccountingSystem.Controllers
             _specialists = new List<Specialist>();
         }
 
-        [HttpPost, Route("specialist"), DisableRequestSizeLimit]
+        [HttpPost, Route("specialist")]
         public IActionResult Register([FromBody] Specialist specialist)
         {
             if (specialist == null)
@@ -33,7 +33,20 @@ namespace VacancyAccountingSystem.Controllers
             return Ok();
         }
 
-        [HttpPost, Route("photo")]
+        [HttpPost, Route("company")]
+        public IActionResult Register([FromBody] Company company)
+        {
+            if (company == null)
+            {
+                return BadRequest("Error!");
+            }
+
+            _companies?.Add(company);
+
+            return Ok();
+        }
+
+        [HttpPost, Route("photo"), DisableRequestSizeLimit]
         public IActionResult UploadPhoto()
         {
             var file = Request.Form.Files[0];
@@ -51,20 +64,6 @@ namespace VacancyAccountingSystem.Controllers
                     file.CopyTo(stream);
                 }
             }
-
-            return Ok();
-        }
-
-
-        [HttpPost, Route("company")]
-        public IActionResult Register([FromBody] Company company)
-        {
-            if (company == null)
-            {
-                return BadRequest("Error!");
-            }
-
-            _companies.Add(company);
 
             return Ok();
         }

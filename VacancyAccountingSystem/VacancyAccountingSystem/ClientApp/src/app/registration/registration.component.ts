@@ -1,3 +1,4 @@
+import { Company } from './../models/company';
 import {Component, HostListener, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
@@ -16,6 +17,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   specialist: Specialist;
+  company: Company;
 
   specialistRegistrationForm: FormGroup;
   companyRegistrationForm: FormGroup;
@@ -79,7 +81,7 @@ export class RegistrationComponent implements OnInit {
         this.specialistRegistrationForm.controls.EmploymentOption.value,
         this.specialistRegistrationForm.controls.PhoneNumber.value,
         this.specialistRegistrationForm.controls.Skype.value,
-        this.photo.name,
+        this.generatePhotoName(this.specialistRegistrationForm.controls.Email.value),
         this.specialistRegistrationForm.controls.Name.value,
         this.specialistRegistrationForm.controls.Surname.value
       );
@@ -96,23 +98,52 @@ export class RegistrationComponent implements OnInit {
         console.log(err);
       });
 
-      const formData = new FormData();
-      const fileExtension = this.photo.name.split('?')[0].split('.').pop();
-      console.log(fileExtension);
-      formData.append('file', this.photo, this.specialist.Email + '.' + fileExtension);
+      this.uploadPhoto(this.specialistRegistrationForm.controls.Email.value);
+
+      this.specialistRegistrationForm.reset();
+    }
+
+    if (this.accountType === 'Company') {
+      this.company = new Company(
+        this.companyRegistrationForm.controls.Email.value,
+        this.companyRegistrationForm.controls.Password.value,
+        this.companyRegistrationForm.controls.Name.value,
+        this.generatePhotoName(this.companyRegistrationForm.controls.Email.value),
+        this.companyRegistrationForm.controls.Website.value,
+        this.companyRegistrationForm.controls.AboutCompany.value,
+      );
+
+      console.log(this.company);
+
+      this.http.post('http://localhost:64709/api/register/company', JSON.stringify(this.company), {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        })
+      }).subscribe(() => {
+        console.log('posted');
+      }, err => {
+        console.log(err);
+      });
+
+      this.uploadPhoto(this.companyRegistrationForm.controls.Email.value);
+
+      this.companyRegistrationForm.reset();
+    }
+  }
+
+  private uploadPhoto(email: string) {
+    const formData = new FormData();
+      formData.append('file', this.photo, this.generatePhotoName(email));
       this.http.post('http://localhost:64709/api/register/photo', formData
       ).subscribe(() => {
         console.log('uploaded');
       }, err => {
         console.log(err);
       });
+  }
 
-      this.specialistRegistrationForm.reset();
-    }
-
-    if (this.accountType === 'Company') {
-      console.log(this.companyRegistrationForm);
-    }
-
+  private generatePhotoName(email: string): string {
+    const fileExtension = this.photo.name.split('?')[0].split('.').pop();
+    return email + '.' + fileExtension;
   }
 }
