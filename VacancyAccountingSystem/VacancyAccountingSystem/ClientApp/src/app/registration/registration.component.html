@@ -17,32 +17,33 @@
                 <button type="button" class="btn btn-success" (click)="file.click()">Upload File</button>
             </div>
 
-            <div id="mainInfo">
-                <label for="text">Name: </label>
-                <input type="text" id="text" formControlName="Name" />
-                <label for="text">Surname: </label>
-                <input type="text" id="text" formControlName="Surname" />
-
-                <label for="email">Email: </label>
-                <input type="text" id="email" formControlName="Email" />
-                <label for="pass">Password:</label>
-                <input type="text" id="pass" formControlName="Password" />
+            <div class="mainInfo">
+                <label for="name">Name: </label>
+                <input type="text" id="name" formControlName="Name" />
+                <label for="surname">Surname: </label>
+                <input type="text" id="surname" formControlName="Surname" />
+                <label for="specEmail">Email: </label>
+                <input type="text" id="specEmail" formControlName="Email" />
+                <label for="password">Password:</label>
+                <input type="text" id="password" formControlName="Password" />
                 <label for="salary">Salary: </label>
                 <input type="text" id="salary" formControlName="DesiredSalary" />
                 <label for="exp">Years of experience:</label>
                 <input type="text" id="exp" formControlName="YearsOfExperience" />
+                <label for="pos">Position:</label>
+                <input type="text" id="pos" formControlName="Position" />
                 <label for="skype">Skype: </label>
                 <input type="text" id="skype" formControlName="Skype" />
-                <label for="city">City: </label>
-                <input type="text" id="city" formControlName="City" />
+                <label for="phone">Phone: </label>
+                <input type="text" id="phone" formControlName="PhoneNumber" />
+                <label for="address">Address (city and etc.): </label>
+                <input type="text" id="address" formControlName="Address" />
                 <label for="tech">Technologies: </label>
                 <input type="text" id="tech" formControlName="Technologies" />
-                <label for="phone">Phone:</label>
-                <input type="text" id="phone" formControlName="PhoneNumber" />
             </div>
 
             <div id="selectInfo">
-                <mat-form-field appearance="fill">
+                <mat-form-field appearance="standard">
                     <mat-label>English level</mat-label>
                     <mat-select formControlName="EnglishLevel">
                         <mat-option *ngFor="let englishLevel of englishLevels" [value]="englishLevel">
@@ -51,7 +52,7 @@
                     </mat-select>
                 </mat-form-field>
 
-                <mat-form-field appearance="fill">
+                <mat-form-field appearance="standard">
                     <mat-label>Employment options</mat-label>
                     <mat-select formControlName="EmploymentOption">
                         <mat-option *ngFor="let employmentOption of employmentOptions" [value]="employmentOption">
@@ -72,11 +73,11 @@
                 <button type="button" class="btn btn-success" (click)="file.click()">Upload File</button>
             </div>
 
-            <div id="mainInfo">
-                <label for="text">Name: </label>
-                <input type="text" id="text" formControlName="Name" />
-                <label for="email">Website: </label>
-                <input type="text" id="text" formControlName="Website" />
+            <div class="mainInfo">
+                <label for="compName">Name: </label>
+                <input type="text" id="compName" formControlName="Name" />
+                <label for="compEmail">Website: </label>
+                <input type="text" id="compEmail" formControlName="Website" />
                 <label for="email">Email: </label>
                 <input type="text" id="email" formControlName="Email" />
                 <label for="pass">Password:</label>

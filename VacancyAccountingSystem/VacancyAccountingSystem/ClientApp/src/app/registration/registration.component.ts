@@ -43,12 +43,13 @@ export class RegistrationComponent implements OnInit {
       Password: new FormControl(''),
       DesiredSalary: new FormControl(''),
       YearsOfExperience: new FormControl(''),
-      City: new FormControl(''),
+      Address: new FormControl(''),
       Technologies: new FormControl(''),
       EnglishLevel: new FormControl(''),
       EmploymentOption: new FormControl(''),
       PhoneNumber: new FormControl(''),
       Skype: new FormControl(''),
+      Position: new FormControl('')
     });
 
     this.companyRegistrationForm = this.formBuilder.group({
@@ -63,10 +64,7 @@ export class RegistrationComponent implements OnInit {
     this.companyRegistrationForm.reset();
   }
 
-  OnFileSelected(event) {
-    console.log(event);
-    this.photo = <File>event.target.files[0];
-  }
+
 
   register() {
     if (this.accountType === 'Specialist') {
@@ -75,7 +73,7 @@ export class RegistrationComponent implements OnInit {
         this.specialistRegistrationForm.controls.Password.value,
         this.specialistRegistrationForm.controls.DesiredSalary.value,
         this.specialistRegistrationForm.controls.YearsOfExperience.value,
-        this.specialistRegistrationForm.controls.City.value,
+        this.specialistRegistrationForm.controls.Address.value,
         this.specialistRegistrationForm.controls.Technologies.value,
         this.specialistRegistrationForm.controls.EnglishLevel.value,
         this.specialistRegistrationForm.controls.EmploymentOption.value,
@@ -83,7 +81,8 @@ export class RegistrationComponent implements OnInit {
         this.specialistRegistrationForm.controls.Skype.value,
         this.generatePhotoName(this.specialistRegistrationForm.controls.Email.value),
         this.specialistRegistrationForm.controls.Name.value,
-        this.specialistRegistrationForm.controls.Surname.value
+        this.specialistRegistrationForm.controls.Surname.value,
+        this.specialistRegistrationForm.controls.Position.value
       );
 
       console.log(this.specialist);
@@ -145,5 +144,10 @@ export class RegistrationComponent implements OnInit {
   private generatePhotoName(email: string): string {
     const fileExtension = this.photo.name.split('?')[0].split('.').pop();
     return email + '.' + fileExtension;
+  }
+
+  private OnFileSelected(event) {
+    console.log(event);
+    this.photo = <File>event.target.files[0];
   }
 }

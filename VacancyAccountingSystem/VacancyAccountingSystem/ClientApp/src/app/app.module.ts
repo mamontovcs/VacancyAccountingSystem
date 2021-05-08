@@ -21,6 +21,9 @@ import {AuthGuard} from './guards/auth/auth-guard.guard';
 import {FooterComponent} from './footer/footer.component';
 import {RegistrationComponent} from './registration/registration.component';
 import {MatFormFieldModule, MatOptionModule, MatRadioModule, MatSelectModule} from '@angular/material';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { MatInputModule } from '@angular/material/input';
+
 
 export function tokenGetter() {
   return localStorage.getItem('jwt');
@@ -34,7 +37,8 @@ export function tokenGetter() {
     HomeComponent,
     VanancyListComponent,
     FooterComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
@@ -44,7 +48,8 @@ export function tokenGetter() {
       {path: '', component: HomeComponent, canActivate: [AuthGuard]},
       {path: 'login', component: LoginComponent},
       {path: 'vacancies', component: VanancyListComponent, canActivate: [AuthGuard]},
-      {path: 'registration', component: RegistrationComponent}
+      {path: 'registration', component: RegistrationComponent},
+      {path: 'profile', component: UserProfileComponent}
     ]),
     JwtModule.forRoot({
       config: {
@@ -64,7 +69,8 @@ export function tokenGetter() {
     ReactiveFormsModule,
     MatFormFieldModule,
     MatOptionModule,
-    MatSelectModule
+    MatSelectModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

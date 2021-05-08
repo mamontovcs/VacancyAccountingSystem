@@ -33,13 +33,17 @@ input {
     text-align: -webkit-center;
 }
 
-#mainInfo {
+.mainInfo {
     width: 380px;
     height: 280px;
 }
 
 #selectInfo {
-    margin-top: 150px;
+    margin-top: 180px;
+}
+
+::ng-deep .mat-form-field-infix {
+  background-color: white ;
 }
 
 .row {
