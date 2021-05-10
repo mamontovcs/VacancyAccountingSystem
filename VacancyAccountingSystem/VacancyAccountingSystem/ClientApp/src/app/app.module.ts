@@ -49,7 +49,7 @@ export function tokenGetter() {
       {path: 'login', component: LoginComponent},
       {path: 'vacancies', component: VanancyListComponent, canActivate: [AuthGuard]},
       {path: 'registration', component: RegistrationComponent},
-      {path: 'profile', component: UserProfileComponent}
+      {path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard]}
     ]),
     JwtModule.forRoot({
       config: {

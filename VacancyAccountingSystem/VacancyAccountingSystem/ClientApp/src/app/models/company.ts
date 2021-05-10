@@ -1,16 +1,16 @@
 export class Company {
     constructor(Email: string, Password: string, Name: string, PhotoPath: string, Website: string, AboutCompany: string) {
-      this.Email = Email;
-      this.Password = Password;
-      this.PhotoPath = PhotoPath;
-      this.Name = Name;
-      this.Website = Website;
-      this.AboutCompany = AboutCompany;
+      this.email = Email;
+      this.password = Password;
+      this.photoPath = PhotoPath;
+      this.name = Name;
+      this.website = Website;
+      this.aboutCompany = AboutCompany;
     }
-    Name: string;
-    AboutCompany: string;
-    Email: string;
-    Password: string;
-    Website: string;
-    PhotoPath: string;
+    name: string;
+    aboutCompany: string;
+    email: string;
+    password: string;
+    website: string;
+    photoPath: string;
   }

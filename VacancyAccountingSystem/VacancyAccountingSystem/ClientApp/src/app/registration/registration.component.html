@@ -52,7 +52,7 @@
                     </mat-select>
                 </mat-form-field>
 
-                <mat-form-field appearance="standard">
+                <mat-form-field appearance="standard" >
                     <mat-label>Employment options</mat-label>
                     <mat-select formControlName="EmploymentOption">
                         <mat-option *ngFor="let employmentOption of employmentOptions" [value]="employmentOption">
@@ -61,12 +61,9 @@
                     </mat-select>
                 </mat-form-field>
             </div>
-
-
             <button class="btn btn-lg btn-primary col-md-6" type="submit">Register</button>
         </form>
         <form [formGroup]="companyRegistrationForm" *ngIf="accountType == 'Company'" (ngSubmit)="register()">
-
             <div>
                 <label for="pass">Photo:</label>
                 <input type="file" #file placeholder="Choose file" accept="image/jpeg,image/png" (change)="OnFileSelected($event)" style="display:none;">

@@ -24,4 +24,8 @@ export class AuthService {
       return false;
     }
   }
+
+  public getCurrentUserName() {
+    return this.jwtHelper.decodeToken(localStorage.getItem('jwt')).UserName;
+  }
 }

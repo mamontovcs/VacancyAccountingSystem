@@ -14,7 +14,7 @@ export class VanancyListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.http.get('http://localhost:64709/api/vacansies/get').subscribe(response => {
+    this.http.get('http://localhost:64709/api/vacancies/get').subscribe(response => {
       this.vacancies = response;
     }, error => {
       console.log(error);

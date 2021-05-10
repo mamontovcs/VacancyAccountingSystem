@@ -4,6 +4,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {Specialist} from '../models/specialist';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-registration',
@@ -23,16 +24,11 @@ export class RegistrationComponent implements OnInit {
   companyRegistrationForm: FormGroup;
 
   accountType: string;
-  englishLevel: string;
-
-  accountTypes: string[] = ['Specialist', 'Company'];
-  englishLevels: string[] = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
-
-  employmentOption: string;
-  employmentOptions: string[] = ['Work from home', 'Full time', 'Part time'];
-
-  onChange: Function;
   private photo = null;
+
+  englishLevels = environment.englishLevels;
+  employmentOptions = environment.employmentOptions;
+  accountTypes = environment.accountTypes;
 
   ngOnInit() {
     this.specialistRegistrationForm = this.formBuilder.group({
@@ -45,8 +41,8 @@ export class RegistrationComponent implements OnInit {
       YearsOfExperience: new FormControl(''),
       Address: new FormControl(''),
       Technologies: new FormControl(''),
-      EnglishLevel: new FormControl(''),
-      EmploymentOption: new FormControl(''),
+      EnglishLevel: new FormControl('A1'),
+      EmploymentOption: new FormControl('Work from home'),
       PhoneNumber: new FormControl(''),
       Skype: new FormControl(''),
       Position: new FormControl('')
@@ -60,8 +56,6 @@ export class RegistrationComponent implements OnInit {
       Email: new FormControl(''),
       Password: new FormControl('')
     });
-
-    this.companyRegistrationForm.reset();
   }
 
 

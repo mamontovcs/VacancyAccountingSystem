@@ -42,10 +42,6 @@ input {
     margin-top: 180px;
 }
 
-::ng-deep .mat-form-field-infix {
-  background-color: white ;
-}
-
 .row {
     justify-content: space-around;
 }
