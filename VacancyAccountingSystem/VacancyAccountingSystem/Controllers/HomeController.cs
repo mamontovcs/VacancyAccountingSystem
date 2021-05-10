@@ -6,7 +6,7 @@ using VacancyAccountingSystem.Repositories;
 namespace VacancyAccountingSystem.Controllers
 {
     [ApiController]
-    [Route("api/vacansies")]
+    [Route("api/vacancies")]
     public class HomeController : ControllerBase
     {
         private IVacancyRepository _vacancyRepository;

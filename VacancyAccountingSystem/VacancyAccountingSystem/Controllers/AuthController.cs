@@ -28,8 +28,8 @@ namespace VacancyAccountingSystem.Controllers
 
                 var claims = new List<Claim>()
                 {
-                    new Claim(ClaimTypes.Name, login.UserName),
-                    new Claim(ClaimTypes.Role, "Manager")
+                    new Claim("UserName", login.UserName),
+                    new Claim("Role", "Manager")
                 };
 
                 var token = new JwtSecurityToken(
