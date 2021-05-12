@@ -10,12 +10,12 @@ namespace VacancyAccountingSystem.Repositories
     {
         public void AddVacancy(Vacancy vacancy);
 
-        public void UpdateVacancy();
+        public bool UpdateVacancy(Vacancy vacancy);
 
-        public void GetVacancy(string name);
+        public Vacancy GetVacancy(string header);
 
         public IEnumerable<Vacancy> GetAllVacancies();
 
-        public void RemoveVacancy(string name);
+        public bool RemoveVacancy(string header);
     }
 }

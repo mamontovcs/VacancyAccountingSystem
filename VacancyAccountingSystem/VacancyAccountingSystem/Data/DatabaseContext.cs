@@ -11,5 +11,10 @@ namespace VacancyAccountingSystem.Data
 
         }
         public DbSet<Vacancy> Vacancies { get; set; }
+
+        public DbSet<Company> Companies { get; set; }
+
+        public DbSet<Specialist> Specialists { get; set; }
+
     }
 }

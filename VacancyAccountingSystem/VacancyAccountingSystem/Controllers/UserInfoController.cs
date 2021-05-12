@@ -9,7 +9,7 @@ namespace VacancyAccountingSystem.Controllers
 {
     [ApiController]
     [Route("api/users")]
-    public class UserController : Controller
+    public class UserInfoController : Controller
     {
         [HttpGet("getSpecialistInfo/{userName}")]
         public IActionResult GetSpecialistInfo(string userName)

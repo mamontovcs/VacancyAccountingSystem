@@ -19,6 +19,10 @@ namespace VacancyAccountingSystem.Models
 
         public string Offers { get; set; }
 
-        public string AboutCompany { get; set; }
+        [ForeignKey("CompanyFK")]
+        public Company Company { get; set; }
+
+        public int? CompanyFK { get; set; }
+
     }
 }

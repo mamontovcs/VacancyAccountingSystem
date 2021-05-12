@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using VacancyAccountingSystem.Data;
 using VacancyAccountingSystem.Models;
 
@@ -7,6 +9,9 @@ namespace VacancyAccountingSystem.Repositories
 {
     public class VacancyRepository : IVacancyRepository
     {
+        // TODO: Add GetAllVacanciesByCompany
+
+
         private DatabaseContext _databaseContext;
         public VacancyRepository(DatabaseContext databaseContext)
         {
@@ -15,28 +20,52 @@ namespace VacancyAccountingSystem.Repositories
 
         public void AddVacancy(Vacancy vacancy)
         {
-          //  _databaseContext.Vacancies.Add(new Vacancy() { AboutCompany = "blablabla", Header = "Bla", Offers = "Nothing", Requirements = "Alot" });
+            _databaseContext.Vacancies.Add(vacancy);
             _databaseContext.SaveChanges();
         }
 
         public IEnumerable<Vacancy> GetAllVacancies()
         {
-            throw new NotImplementedException();
+            return _databaseContext.Vacancies.Include("Company").ToList();
         }
 
-        public void GetVacancy(string name)
+        public Vacancy GetVacancy(string header)
         {
-            throw new NotImplementedException();
+            return _databaseContext.Vacancies.FirstOrDefault(x => x.Header == header);
         }
 
-        public void RemoveVacancy(string name)
+        public bool RemoveVacancy(string header)
         {
-            throw new NotImplementedException();
+            var vacancyToRemove = _databaseContext.Vacancies.FirstOrDefault(x => x.Header == header);
+
+            if (vacancyToRemove != null)
+            {
+                _databaseContext.Vacancies.Remove(vacancyToRemove);
+                _databaseContext.SaveChanges();
+
+                return true;
+            }
+
+            return false;
         }
 
-        public void UpdateVacancy()
+        public bool UpdateVacancy(Vacancy vacancy)
         {
-            throw new NotImplementedException();
+            var vacancyToUpdate = _databaseContext.Vacancies.FirstOrDefault(x => x.Id == vacancy.Id);
+
+            if (vacancyToUpdate != null)
+            {
+                // _databaseContext.Vacancies.Update(vacancyToUpdate); Check this
+
+                _databaseContext.Vacancies.Remove(vacancyToUpdate);
+                _databaseContext.Vacancies.Add(vacancyToUpdate);
+
+                _databaseContext.SaveChanges();
+
+                return true;
+            }
+
+            return false;
         }
     }
 }
