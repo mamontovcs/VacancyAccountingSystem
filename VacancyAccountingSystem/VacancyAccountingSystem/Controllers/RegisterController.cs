@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.Http.Headers;
 using VacancyAccountingSystem.Models;
+using VacancyAccountingSystem.Repositories;
 
 namespace VacancyAccountingSystem.Controllers
 {
@@ -10,14 +11,17 @@ namespace VacancyAccountingSystem.Controllers
     [ApiController]
     public class RegisterController : ControllerBase
     {
-        List<Specialist> _specialists;
-        List<Company> _companies;
-        // https://stackoverflow.com/questions/1763775/asp-net-mvc-controller-lifecycle
-        // About controller (new instance will be constructed for each request)
+        private readonly IRepository<Company> _companyRepository;
+        private readonly IRepository<Specialist> _specialistRepository;
+        private readonly IRepository<Login> _loginRepository;
 
-        public RegisterController()
+        public RegisterController(IRepository<Company> companyRepository,
+            IRepository<Specialist> specialistRepository,
+            IRepository<Login> loginRepository)
         {
-            _specialists = new List<Specialist>();
+            _companyRepository = companyRepository;
+            _specialistRepository = specialistRepository;
+            _loginRepository = loginRepository;
         }
 
         [HttpPost, Route("specialist")]
@@ -28,7 +32,7 @@ namespace VacancyAccountingSystem.Controllers
                 return BadRequest("Error!");
             }
 
-            _specialists.Add(specialist);
+            _specialistRepository.Add(specialist);
 
             return Ok();
         }
@@ -41,29 +45,7 @@ namespace VacancyAccountingSystem.Controllers
                 return BadRequest("Error!");
             }
 
-            _companies?.Add(company);
-
-            return Ok();
-        }
-
-        [HttpPost, Route("photo"), DisableRequestSizeLimit]
-        public IActionResult UploadPhoto()
-        {
-            var file = Request.Form.Files[0];
-            var folderName = Path.Combine("Resources", "Images");
-            var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
-
-            if (file.Length > 0)
-            {
-                var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-                var fullPath = Path.Combine(pathToSave, fileName);
-                var dbPath = Path.Combine(folderName, fileName);
-
-                using (var stream = new FileStream(fullPath, FileMode.Create))
-                {
-                    file.CopyTo(stream);
-                }
-            }
+            _companyRepository.Add(company);
 
             return Ok();
         }

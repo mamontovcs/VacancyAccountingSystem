@@ -14,6 +14,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IO;
 using System.Text;
 using VacancyAccountingSystem.Data;
+using VacancyAccountingSystem.Models;
 using VacancyAccountingSystem.Repositories;
 
 namespace VacancyAccountingSystem
@@ -80,7 +81,11 @@ namespace VacancyAccountingSystem
                     };
                 });
 
-            services.AddScoped<IVacancyRepository, VacancyRepository>();
+            services.AddScoped<IRepository<Vacancy>, VacancyRepository>();
+            services.AddScoped<IRepository<Company>, CompanyRepository>();
+            services.AddScoped<IRepository<Login>, LoginRepository>();
+            services.AddScoped<IRepository<Specialist>, SpecialistRepository>();
+            services.AddScoped<ISpecialistRepositoryDecorator, SpecialistRepositoryDecorator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

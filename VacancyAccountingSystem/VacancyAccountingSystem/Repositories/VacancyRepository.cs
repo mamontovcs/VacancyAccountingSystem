@@ -7,36 +7,34 @@ using VacancyAccountingSystem.Models;
 
 namespace VacancyAccountingSystem.Repositories
 {
-    public class VacancyRepository : IVacancyRepository
+    public class VacancyRepository : IRepository<Vacancy>
     {
         // TODO: Add GetAllVacanciesByCompany
-
-
         private DatabaseContext _databaseContext;
         public VacancyRepository(DatabaseContext databaseContext)
         {
             _databaseContext = databaseContext;
         }
 
-        public void AddVacancy(Vacancy vacancy)
+        public void Add(Vacancy vacancy)
         {
             _databaseContext.Vacancies.Add(vacancy);
             _databaseContext.SaveChanges();
         }
 
-        public IEnumerable<Vacancy> GetAllVacancies()
+        public IEnumerable<Vacancy> GetAll()
         {
-            return _databaseContext.Vacancies.Include("Company").ToList();
+            return _databaseContext.Vacancies.Include(x => x.Company).ToList();
         }
 
-        public Vacancy GetVacancy(string header)
+        public Vacancy Get(int id)
         {
-            return _databaseContext.Vacancies.FirstOrDefault(x => x.Header == header);
+            return _databaseContext.Vacancies.FirstOrDefault(x => x.Id == id);
         }
 
-        public bool RemoveVacancy(string header)
+        public bool Remove(int id)
         {
-            var vacancyToRemove = _databaseContext.Vacancies.FirstOrDefault(x => x.Header == header);
+            var vacancyToRemove = _databaseContext.Vacancies.FirstOrDefault(x => x.Id == id);
 
             if (vacancyToRemove != null)
             {
@@ -49,7 +47,7 @@ namespace VacancyAccountingSystem.Repositories
             return false;
         }
 
-        public bool UpdateVacancy(Vacancy vacancy)
+        public bool Update(Vacancy vacancy)
         {
             var vacancyToUpdate = _databaseContext.Vacancies.FirstOrDefault(x => x.Id == vacancy.Id);
 
@@ -58,7 +56,7 @@ namespace VacancyAccountingSystem.Repositories
                 // _databaseContext.Vacancies.Update(vacancyToUpdate); Check this
 
                 _databaseContext.Vacancies.Remove(vacancyToUpdate);
-                _databaseContext.Vacancies.Add(vacancyToUpdate);
+                _databaseContext.Vacancies.Add(vacancy);
 
                 _databaseContext.SaveChanges();
 

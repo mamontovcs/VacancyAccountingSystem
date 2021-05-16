@@ -7,22 +7,21 @@ using System.Threading.Tasks;
 
 namespace VacancyAccountingSystem.Models
 {
-    public class Vacancy
+    public abstract class User
     {
+        public User()
+        {
+            Login = new Login();
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public string Header { get; set; }
+        [ForeignKey("LoginFK")]
+        public virtual Login Login { get; set; }
 
-        public string Requirements { get; set; }
-
-        public string Offers { get; set; }
-
-        [ForeignKey("CompanyFK")]
-        public virtual Company Company { get; set; }
-
-        public int? CompanyFK { get; set; }
-
+        public int? LoginFK { get; set; }
+        public string PhotoPath { get; set; }
     }
 }

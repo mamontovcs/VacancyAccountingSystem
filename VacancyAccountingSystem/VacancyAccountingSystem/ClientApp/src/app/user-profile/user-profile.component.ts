@@ -13,19 +13,17 @@ import {async, Observable} from 'rxjs';
 export class UserProfileComponent implements OnInit {
 
   currentSpecialist: Observable<Specialist>;
-
   englishLevels = environment.englishLevels;
   employmentOptions = environment.employmentOptions;
   specialistProfileForm: FormGroup;
-  isDataLoaded: boolean;
+  image: string;
 
   constructor(private userService: UserService) {
   }
 
   ngOnInit() {
-    this.isDataLoaded = false;
     this.specialistProfileForm = new FormGroup({
-      Surname: new FormControl(''),
+      Surname: new FormControl(),
       Name: new FormControl(),
       Email: new FormControl(),
       Password: new FormControl(),
@@ -41,27 +39,11 @@ export class UserProfileComponent implements OnInit {
     });
 
     this.currentSpecialist = this.userService.getCurrentUser();
+
     this.currentSpecialist.subscribe(data => this.specialistProfileForm.get('EmploymentOption').setValue(data.employmentOptions));
     this.currentSpecialist.subscribe(data => this.specialistProfileForm.get('EnglishLevel').setValue(data.englishLevel));
+    this.currentSpecialist.subscribe(data => this.specialistProfileForm.get('Email').setValue(data.login.email));
+    this.currentSpecialist.subscribe(data => this.specialistProfileForm.get('Password').setValue(data.login.password));
+    this.currentSpecialist.subscribe(data => this.image = 'http://localhost:64709/api/file/photo/' + data.photoPath);
   }
-
-  // updateFormData(data: Specialist) {
-  //   this.specialistProfileForm.setValue({
-  //     Surname: data.surname,
-  //     Name: data.name,
-  //     Email: data.email,
-  //     Password: data.password,
-  //     DesiredSalary: data.desiredSalary,
-  //     YearsOfExperience: data.yearsOfExperience,
-  //     Address: data.address,
-  //     Technologies: data.technologies,
-  //     EnglishLevel: data.englishLevel,
-  //     EmploymentOption: data.employmentOptions,
-  //     PhoneNumber: data.phoneNumber,
-  //     Skype: data.skype,
-  //     Position: data.position
-  //   });
-  //
-  //   this.isDataLoaded = true;
-  // }
 }

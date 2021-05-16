@@ -1,7 +1,8 @@
+import {Login} from './login';
+
 export class Company {
-    constructor(Email: string, Password: string, Name: string, PhotoPath: string, Website: string, AboutCompany: string) {
-      this.email = Email;
-      this.password = Password;
+    constructor(Login: Login, Name: string, PhotoPath: string, Website: string, AboutCompany: string) {
+      this.login = Login;
       this.photoPath = PhotoPath;
       this.name = Name;
       this.website = Website;
@@ -9,8 +10,7 @@ export class Company {
     }
     name: string;
     aboutCompany: string;
-    email: string;
-    password: string;
     website: string;
     photoPath: string;
+    login: Login;
   }

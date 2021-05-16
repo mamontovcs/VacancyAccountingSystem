@@ -1,10 +1,11 @@
-import { Company } from './../models/company';
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Company} from './../models/company';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {Specialist} from '../models/specialist';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import {environment} from 'src/environments/environment';
+import {Login} from '../models/login';
 
 @Component({
   selector: 'app-registration',
@@ -59,12 +60,11 @@ export class RegistrationComponent implements OnInit {
   }
 
 
-
   register() {
     if (this.accountType === 'Specialist') {
       this.specialist = new Specialist(
-        this.specialistRegistrationForm.controls.Email.value,
-        this.specialistRegistrationForm.controls.Password.value,
+        new Login(this.specialistRegistrationForm.controls.Email.value,
+          this.specialistRegistrationForm.controls.Password.value, 'Specialist'),
         this.specialistRegistrationForm.controls.DesiredSalary.value,
         this.specialistRegistrationForm.controls.YearsOfExperience.value,
         this.specialistRegistrationForm.controls.Address.value,
@@ -98,8 +98,8 @@ export class RegistrationComponent implements OnInit {
 
     if (this.accountType === 'Company') {
       this.company = new Company(
-        this.companyRegistrationForm.controls.Email.value,
-        this.companyRegistrationForm.controls.Password.value,
+        new Login(this.companyRegistrationForm.controls.Email.value,
+          this.companyRegistrationForm.controls.Password.value, 'Company'),
         this.companyRegistrationForm.controls.Name.value,
         this.generatePhotoName(this.companyRegistrationForm.controls.Email.value),
         this.companyRegistrationForm.controls.Website.value,
@@ -122,17 +122,19 @@ export class RegistrationComponent implements OnInit {
 
       this.companyRegistrationForm.reset();
     }
+
+    this.router.navigate(['/']);
   }
 
   private uploadPhoto(email: string) {
     const formData = new FormData();
-      formData.append('file', this.photo, this.generatePhotoName(email));
-      this.http.post('http://localhost:64709/api/register/photo', formData
-      ).subscribe(() => {
-        console.log('uploaded');
-      }, err => {
-        console.log(err);
-      });
+    formData.append('file', this.photo, this.generatePhotoName(email));
+    this.http.post('http://localhost:64709/api/file/photo', formData
+    ).subscribe(() => {
+      console.log('uploaded');
+    }, err => {
+      console.log(err);
+    });
   }
 
   private generatePhotoName(email: string): string {

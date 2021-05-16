@@ -4,16 +4,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace VacancyAccountingSystem.Models
 {
-    public class Specialist
+    public class Specialist : User
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-        public string PhotoPath { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string DesiredSalary { get; set; }
-        public string YearsOfExperience { get; set; }
+        public double DesiredSalary { get; set; }
+        public int YearsOfExperience { get; set; }
         public string Address { get; set; }
         public string Technologies { get; set; }
         public string EnglishLevel { get; set; }
@@ -22,6 +16,6 @@ namespace VacancyAccountingSystem.Models
         public string Skype { get; set; }
         public string Position { get; set; }
         public string Name { get; set; }
-        public string Surname { get; set; }
+        public string Surname { get; set; }  
     }
 }

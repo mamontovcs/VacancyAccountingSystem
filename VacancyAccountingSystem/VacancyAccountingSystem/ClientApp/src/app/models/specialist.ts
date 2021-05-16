@@ -1,11 +1,12 @@
 // @ts-ignore
+import {Login} from './login';
+
 export class Specialist {
-  constructor(Email: string, Password: string, DesiredSalary: number, YearsOfExperience: number,
+  constructor(Login: Login, DesiredSalary: number, YearsOfExperience: number,
               Address: string, Technologies: string, EnglishLevel: string,
               EmploymentOptions: string, PhoneNumber: string, Skype: string, PhotoPath: string,
               Name: string, Surname: string, Position: string) {
-    this.email = Email;
-    this.password = Password;
+    this.login = Login;
     this.desiredSalary = DesiredSalary;
     this.yearsOfExperience = YearsOfExperience;
     this.address = Address;
@@ -22,8 +23,7 @@ export class Specialist {
 
   name: string;
   surname: string;
-  email: string;
-  password: string;
+  login: Login;
   desiredSalary: number;
   yearsOfExperience: number;
   address: string;

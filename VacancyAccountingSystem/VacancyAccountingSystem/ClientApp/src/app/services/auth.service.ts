@@ -28,4 +28,8 @@ export class AuthService {
   public getCurrentUserName() {
     return this.jwtHelper.decodeToken(localStorage.getItem('jwt')).UserName;
   }
+
+  public getCurrentUserType() {
+    return this.jwtHelper.decodeToken(localStorage.getItem('jwt')).Type;
+  }
 }

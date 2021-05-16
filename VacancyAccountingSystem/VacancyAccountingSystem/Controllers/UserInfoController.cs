@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using VacancyAccountingSystem.Models;
+using VacancyAccountingSystem.Repositories;
 
 namespace VacancyAccountingSystem.Controllers
 {
@@ -11,26 +12,24 @@ namespace VacancyAccountingSystem.Controllers
     [Route("api/users")]
     public class UserInfoController : Controller
     {
-        [HttpGet("getSpecialistInfo/{userName}")]
-        public IActionResult GetSpecialistInfo(string userName)
+        private ISpecialistRepositoryDecorator _repository;
+
+        public UserInfoController(ISpecialistRepositoryDecorator repository)
         {
-             return Ok(new Specialist() 
-            { 
-                Name = "Vitaliy",
-                Address = "D31",
-                DesiredSalary = "5000",
-                Email = "vintixfish@gmail.com",
-                EmploymentOptions = "Full time",
-                EnglishLevel = "B2",
-                Password = "20000",
-                PhoneNumber = "0670119497",
-                PhotoPath = "x",
-                Position = ".Net developer",
-                Skype = "Gomer1245",
-                Surname = "Mamontov",
-                Technologies = ".Net",
-                YearsOfExperience = "3"
-            });
+            _repository = repository;
+        }
+
+        [HttpGet("getSpecialistInfo/{email}")]
+        public IActionResult GetSpecialistInfo(string email)
+        {
+            var specialist = _repository.GetSpecialistByEmail(email);
+
+            if (specialist == null)
+            {
+                BadRequest();
+            }
+
+            return Ok(specialist);
         }
     }
 }

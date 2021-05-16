@@ -13,9 +13,9 @@ namespace VacancyAccountingSystem.Controllers
     [Route("api/vacancies")]
     public class VacancyController : Controller
     {
-        private IVacancyRepository _vacancyRepository;
+        private IRepository<Vacancy> _vacancyRepository;
 
-        public VacancyController(IVacancyRepository vacancyRepository)
+        public VacancyController(IRepository<Vacancy> vacancyRepository)
         {
             _vacancyRepository = vacancyRepository;
         }
@@ -24,7 +24,7 @@ namespace VacancyAccountingSystem.Controllers
         //[Authorize(Roles = "Manager")]
         public IEnumerable<Vacancy> GetAllVacancies()
         {
-            return _vacancyRepository.GetAllVacancies();
+            return _vacancyRepository.GetAll();
         }
 
 
@@ -32,7 +32,7 @@ namespace VacancyAccountingSystem.Controllers
         //[Authorize(Roles = "Manager")]
         public IActionResult AddVacancy(Vacancy vacancy)
         {
-            _vacancyRepository.AddVacancy(vacancy);
+            _vacancyRepository.Add(vacancy);
             return Ok();
         }
     }
