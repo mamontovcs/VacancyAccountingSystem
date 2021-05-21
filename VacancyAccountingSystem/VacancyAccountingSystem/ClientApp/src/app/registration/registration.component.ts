@@ -81,7 +81,7 @@ export class RegistrationComponent implements OnInit {
 
       console.log(this.specialist);
 
-      this.http.post('http://localhost:64709/api/register/specialist', JSON.stringify(this.specialist), {
+      this.http.post(environment.api_url + 'api/register/specialist', JSON.stringify(this.specialist), {
         headers: new HttpHeaders({
           'Content-Type': 'application/json'
         })
@@ -108,7 +108,7 @@ export class RegistrationComponent implements OnInit {
 
       console.log(this.company);
 
-      this.http.post('http://localhost:64709/api/register/company', JSON.stringify(this.company), {
+      this.http.post(environment.api_url + 'api/register/company', JSON.stringify(this.company), {
         headers: new HttpHeaders({
           'Content-Type': 'application/json'
         })
@@ -129,7 +129,7 @@ export class RegistrationComponent implements OnInit {
   private uploadPhoto(email: string) {
     const formData = new FormData();
     formData.append('file', this.photo, this.generatePhotoName(email));
-    this.http.post('http://localhost:64709/api/file/photo', formData
+    this.http.post(environment.api_url + 'api/file/photo', formData
     ).subscribe(() => {
       console.log('uploaded');
     }, err => {
