@@ -44,6 +44,6 @@ export class UserProfileComponent implements OnInit {
     this.currentSpecialist.subscribe(data => this.specialistProfileForm.get('EnglishLevel').setValue(data.englishLevel));
     this.currentSpecialist.subscribe(data => this.specialistProfileForm.get('Email').setValue(data.login.email));
     this.currentSpecialist.subscribe(data => this.specialistProfileForm.get('Password').setValue(data.login.password));
-    this.currentSpecialist.subscribe(data => this.image = environment.api_url + '/api/file/photo/' + data.photoPath);
+    this.currentSpecialist.subscribe(data => this.image = environment.api_url + 'api/file/photo/' + data.photoPath);
   }
 }
