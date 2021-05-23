@@ -20,9 +20,10 @@ import {VanancyListComponent} from './vanancy-list/vanancy-list.component';
 import {AuthGuard} from './guards/auth/auth-guard.guard';
 import {FooterComponent} from './footer/footer.component';
 import {RegistrationComponent} from './registration/registration.component';
-import {MatFormFieldModule, MatOptionModule, MatRadioModule, MatSelectModule} from '@angular/material';
-import { UserProfileComponent } from './user-profile/user-profile.component';
-import { MatInputModule } from '@angular/material/input';
+import {MatCardModule, MatDialogModule, MatFormFieldModule, MatOptionModule, MatRadioModule, MatSelectModule} from '@angular/material';
+import {UserProfileComponent} from './user-profile/user-profile.component';
+import {MatInputModule} from '@angular/material/input';
+import {VanacyInfoDialogComponent} from './vanacy-info-dialog/vanacy-info-dialog.component';
 
 
 export function tokenGetter() {
@@ -38,14 +39,16 @@ export function tokenGetter() {
     VanancyListComponent,
     FooterComponent,
     RegistrationComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    VanacyInfoDialogComponent
   ],
+  entryComponents: [VanacyInfoDialogComponent],
   imports: [
     BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      {path: '', component: HomeComponent, canActivate: [AuthGuard]},
+      {path: '', component: VanancyListComponent, canActivate: [AuthGuard]},
       {path: 'login', component: LoginComponent},
       {path: 'vacancies', component: VanancyListComponent, canActivate: [AuthGuard]},
       {path: 'registration', component: RegistrationComponent},
@@ -70,7 +73,9 @@ export function tokenGetter() {
     MatFormFieldModule,
     MatOptionModule,
     MatSelectModule,
-    MatInputModule
+    MatInputModule,
+    MatCardModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

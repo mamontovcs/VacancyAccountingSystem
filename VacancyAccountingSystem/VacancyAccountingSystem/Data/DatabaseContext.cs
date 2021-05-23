@@ -25,6 +25,9 @@ namespace VacancyAccountingSystem.Data
                 .HasOne(a => a.Login)
                 .WithOne(b => b.User)
                 .HasForeignKey<Login>(b => b.Id);
+
+            modelBuilder.Entity<Specialist>().ToTable(nameof(Specialist));
+            modelBuilder.Entity<Company>().ToTable(nameof(Company));
         }
     }
 }

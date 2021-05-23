@@ -21,6 +21,7 @@ export class Specialist {
     this.position = Position;
   }
 
+  id: number;
   name: string;
   surname: string;
   login: Login;

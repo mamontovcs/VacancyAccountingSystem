@@ -8,6 +8,7 @@ export class Company {
       this.website = Website;
       this.aboutCompany = AboutCompany;
     }
+    id: number;
     name: string;
     aboutCompany: string;
     website: string;

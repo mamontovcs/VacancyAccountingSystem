@@ -46,7 +46,7 @@ namespace VacancyAccountingSystem.Controllers
                     "http://localhost:64709",
                     claims,
                     null,
-                    DateTime.Now.AddMinutes(30),
+                    DateTime.Now.AddDays(1),
                     credentials);
 
                 var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
