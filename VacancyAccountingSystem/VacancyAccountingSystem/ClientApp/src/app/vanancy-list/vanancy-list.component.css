@@ -9,7 +9,7 @@
   justify-content: center;
 }
 
-.vacancy-list{
+.vacancy-list {
   padding-bottom: 50px
 }
 
@@ -19,10 +19,13 @@
 .mat-card:hover {
   background-color: #82ACC4;
 
-  box-shadow:
-    1px 1px #b6fcff,
-    2px 2px #b6fcff,
-    3px 3px #b6fcff;
+  box-shadow: 1px 1px #b6fcff,
+  2px 2px #b6fcff,
+  3px 3px #b6fcff;
   -webkit-transform: translateX(-3px);
   transform: translateX(-3px);
+}
+
+p {
+  font-size: 22px;
 }

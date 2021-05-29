@@ -9,7 +9,7 @@ namespace VacancyAccountingSystem.Models
     {
         public Specialist()
         {
-            RespondedVacancies = new List<Vacancy>();
+            VacancySpecialists = new List<VacancySpecialist>();
         }
 
         public double DesiredSalary { get; set; }
@@ -23,6 +23,6 @@ namespace VacancyAccountingSystem.Models
         public string Position { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }  
-        public ICollection<Vacancy> RespondedVacancies { get; set; }
+        public ICollection<VacancySpecialist> VacancySpecialists { get; set; }
     }
 }

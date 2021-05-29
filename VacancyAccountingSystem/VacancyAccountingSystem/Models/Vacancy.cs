@@ -11,7 +11,7 @@ namespace VacancyAccountingSystem.Models
     {
         public Vacancy()
         {
-            RespondedSpecialists = new List<Specialist>();
+            VacancySpecialists = new List<VacancySpecialist>();
         }
 
         [Key]
@@ -22,6 +22,8 @@ namespace VacancyAccountingSystem.Models
 
         public string Requirements { get; set; }
 
+        public double? Salary { get; set; }
+
         public string Offers { get; set; }
 
         public string About { get; set; }
@@ -31,7 +33,7 @@ namespace VacancyAccountingSystem.Models
 
         public int? CompanyFK { get; set; }
 
-        public ICollection<Specialist> RespondedSpecialists { get; set; }
+        public ICollection<VacancySpecialist> VacancySpecialists { get; set; }
 
     }
 }

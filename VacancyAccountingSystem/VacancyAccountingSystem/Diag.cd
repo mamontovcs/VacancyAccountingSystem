@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="VacancyAccountingSystem.Controllers.AuthController">
+    <Position X="1.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAABAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Controllers\AuthController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_repository" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="VacancyAccountingSystem.Controllers.FileController">
+    <Position X="4.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\FileController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VacancyAccountingSystem.Controllers.RegisterController">
+    <Position X="1.75" Y="7.25" Width="1.5" />
+    <AssociationLine Name="_loginRepository" Type="VacancyAccountingSystem.Repositories.IRepository&lt;T&gt;">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.131" Y="0.862" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="_specialistRepository" Type="VacancyAccountingSystem.Repositories.IRepository&lt;T&gt;">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.079" Y="0.883" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="_companyRepository" Type="VacancyAccountingSystem.Repositories.IRepository&lt;T&gt;">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-2.473" Y="1.425" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAEAABAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Controllers\RegisterController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_companyRepository" />
+      <Field Name="_loginRepository" />
+      <Field Name="_specialistRepository" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="VacancyAccountingSystem.Controllers.UserInfoController" Collapsed="true">
+    <Position X="1.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Controllers\UserInfoController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VacancyAccountingSystem.Controllers.VacancyController">
+    <Position X="10" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Controllers\VacancyController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_vacancyRepository" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="VacancyAccountingSystem.Data.DatabaseContext" Collapsed="true">
+    <Position X="9.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAABAAAAAAAAAAAAAAAAAAAEAAgAAAAAAAQAAAAIAA=</HashCode>
+      <FileName>Data\DatabaseContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VacancyAccountingSystem.Models.Company" Collapsed="true">
+    <Position X="2" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAIAAAAAAAQAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>Models\Company.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VacancyAccountingSystem.Models.Login" Collapsed="true">
+    <Position X="3" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAAACAAAAAAAAAAAAAAAAAAAAACAQAAAAAAAAA=</HashCode>
+      <FileName>Models\Login.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VacancyAccountingSystem.Models.Specialist" Collapsed="true">
+    <Position X="4.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAABAAAAQCAAgAgAAAAQAwABAAAAAACAIAAAAAAAAA=</HashCode>
+      <FileName>Models\Specialist.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VacancyAccountingSystem.Models.User" Collapsed="true">
+    <Position X="3.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAQAAAAAAAAAAIAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VacancyAccountingSystem.Models.Vacancy" Collapsed="true">
+    <Position X="4.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAACBAAAAAAQAAEAAAAAAAAAAQIAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Models\Vacancy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VacancyAccountingSystem.Models.VacancySpecialist" Collapsed="true">
+    <Position X="2" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAACAAAAAAAAAAAAAAAAAAABAAAQAA=</HashCode>
+      <FileName>Models\VacancySpecialist.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VacancyAccountingSystem.Repositories.CompanyRepository" BaseTypeListCollapsed="true">
+    <Position X="8.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAAAAAAABAAAAABAAAAAAAAAAAAgCAAAAAAAA=</HashCode>
+      <FileName>Repositories\CompanyRepository.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_databaseContext" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VacancyAccountingSystem.Repositories.LoginRepository" BaseTypeListCollapsed="true">
+    <Position X="10.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAAAAAAABAAAAABAAAAAAAAAAAAgCAAAAAAAA=</HashCode>
+      <FileName>Repositories\LoginRepository.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_databaseContext" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VacancyAccountingSystem.Repositories.SpecialistRepository" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAAAAAAABAAAAABAAAAAAAAAAAAgCAAAAAAAA=</HashCode>
+      <FileName>Repositories\SpecialistRepository.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_databaseContext" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VacancyAccountingSystem.Repositories.SpecialistRepositoryDecorator" BaseTypeListCollapsed="true">
+    <Position X="12" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAAAhAAABAAAAABAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Repositories\SpecialistRepositoryDecorator.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_repository" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VacancyAccountingSystem.Repositories.VacancyRepository" BaseTypeListCollapsed="true">
+    <Position X="13.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAAAAAAABAAAAABAAAAAAAAAAAAgCAAAAAAAA=</HashCode>
+      <FileName>Repositories\VacancyRepository.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_databaseContext" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="VacancyAccountingSystem.Repositories.IRepository&lt;T&gt;">
+    <Position X="7.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAAAAAAABAAAAABAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Repositories\IRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="VacancyAccountingSystem.Repositories.ISpecialistRepositoryDecorator">
+    <Position X="4.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repositories\ISpecialistRepositoryDecorator.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

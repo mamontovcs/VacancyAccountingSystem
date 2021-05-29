@@ -12,6 +12,7 @@ import {VanacyInfoDialogComponent} from '../vanacy-info-dialog/vanacy-info-dialo
 export class VanancyListComponent implements OnInit {
 
   vacancies: Array<Vacancy> = [];
+  selectedValue: Vacancy;
 
   constructor(private http: HttpClient,
               private infoDialog: MatDialog) {
@@ -24,7 +25,7 @@ export class VanancyListComponent implements OnInit {
       'Marketing Creatio — інструменти для управління маркетинговими кампаніями та комунікаціями.\n' +
       'Service Creatio — рішення для прискорення процесів обслуговування клієнтів.\n' +
       'Команди випускають оновлення кожні 5 тижнів, дотримуючись принципу Continuous Delivery / Continuous Integration. Вихід нових версій Creatio базується на принципах зворотної сумісності, які підтримуються для всіх публічних API та моделей даних.',
-      'Middle .Net developer', 'C# SQL', '3000$', 'Luxoft'));
+      'Middle .Net developer', 'C# SQL', 'many cool things', 4234234, 'Luxoft'));
     this.vacancies.push(new Vacancy('R&D центр Terrasoft Ukraine розширює команду. Шукаємо Full Stack Developer з досвідом розробки на C#, JavaScript і TypeScript.\n' +
       '\n' +
       'Зусилля R&D направлені на розробку інтелектуальної low-code платформи та чотирьох продуктів:\n' +
@@ -34,7 +35,7 @@ export class VanancyListComponent implements OnInit {
       'Marketing Creatio — інструменти для управління маркетинговими кампаніями та комунікаціями.\n' +
       'Service Creatio — рішення для прискорення процесів обслуговування клієнтів.\n' +
       'Команди випускають оновлення кожні 5 тижнів, дотримуючись принципу Continuous Delivery / Continuous Integration. Вихід нових версій Creatio базується на принципах зворотної сумісності, які підтримуються для всіх публічних API та моделей даних.',
-      'Middle .Net developer', 'C# SQL', '3000$', 'Luxoft'));
+      'Middle .Net developer', 'C# SQL', 'nothing', 22222, 'Luxoft'));
     this.vacancies.push(new Vacancy('R&D центр Terrasoft Ukraine розширює команду. Шукаємо Full Stack Developer з досвідом розробки на C#, JavaScript і TypeScript.\n' +
       '\n' +
       'Зусилля R&D направлені на розробку інтелектуальної low-code платформи та чотирьох продуктів:\n' +
@@ -44,7 +45,7 @@ export class VanancyListComponent implements OnInit {
       'Marketing Creatio — інструменти для управління маркетинговими кампаніями та комунікаціями.\n' +
       'Service Creatio — рішення для прискорення процесів обслуговування клієнтів.\n' +
       'Команди випускають оновлення кожні 5 тижнів, дотримуючись принципу Continuous Delivery / Continuous Integration. Вихід нових версій Creatio базується на принципах зворотної сумісності, які підтримуються для всіх публічних API та моделей даних.',
-      'Middle .Net developer', 'C# SQL', '3000$', 'Luxoft'));
+      'Middle .Net developer', 'C# SQL', 'medical insurance', 3333, 'Luxoft'));
     this.vacancies.push(new Vacancy('R&D центр Terrasoft Ukraine розширює команду. Шукаємо Full Stack Developer з досвідом розробки на C#, JavaScript і TypeScript.\n' +
       '\n' +
       'Зусилля R&D направлені на розробку інтелектуальної low-code платформи та чотирьох продуктів:\n' +
@@ -54,7 +55,7 @@ export class VanancyListComponent implements OnInit {
       'Marketing Creatio — інструменти для управління маркетинговими кампаніями та комунікаціями.\n' +
       'Service Creatio — рішення для прискорення процесів обслуговування клієнтів.\n' +
       'Команди випускають оновлення кожні 5 тижнів, дотримуючись принципу Continuous Delivery / Continuous Integration. Вихід нових версій Creatio базується на принципах зворотної сумісності, які підтримуються для всіх публічних API та моделей даних.',
-      'Middle .Net developer', 'C# SQL', '3000$', 'Luxoft'));
+      'Middle .Net developer', 'C# SQL', 'cool PC', undefined, 'Luxoft'));
 
   }
 
@@ -67,7 +68,7 @@ export class VanancyListComponent implements OnInit {
 
   }
 
-  OnMoreClick() {
-    const dialog = this.infoDialog.open(VanacyInfoDialogComponent);
+  OnMoreClick(vacancy: Vacancy) {
+    const dialog = this.infoDialog.open(VanacyInfoDialogComponent, {data: vacancy});
   }
 }
