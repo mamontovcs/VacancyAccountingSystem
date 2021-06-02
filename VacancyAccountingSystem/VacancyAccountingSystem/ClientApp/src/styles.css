@@ -6,6 +6,19 @@ a {
   color: #0366d6;
 }
 
+#component-header{
+  font-size: 30px;
+  letter-spacing: 2.4px;
+  word-spacing: 6px;
+  color: #000000;
+  font-weight: 700;
+  text-decoration: none;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
+  color: #673ab7;
+}
+
 code {
   color: #e01a76;
 }
@@ -47,6 +60,10 @@ body {
   bottom: 0;
   top: 0;
   margin: auto;
+}
+
+.container{
+  margin-top: 15px;
 }
 
 .waveWrapperInner {

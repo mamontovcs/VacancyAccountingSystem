@@ -9,7 +9,7 @@ import {environment} from '../../environments/environment';
 })
 export class UserService {
 
-  private currentSpecialist: Specialist;
+  private currentUser: any;
 
   constructor(private authService: AuthService,
               private http: HttpClient) {
@@ -18,10 +18,15 @@ export class UserService {
 
   public getCurrentUser() {
     const currentUserName = this.authService.getCurrentUserName();
+    let data = null;
 
-    const data = this.http.get<Specialist>(environment.api_url + 'api/users/getSpecialistInfo/' + currentUserName);
+    if (this.authService.getCurrentUserType() === 'Specialist') {
+      data = this.http.get<any>(environment.api_url + 'api/users/getSpecialistInfo/' + currentUserName);
+    } else {
+      data = this.http.get<any>(environment.api_url + 'api/users/getCompanyInfo/' + currentUserName);
+    }
 
-    data.subscribe(res => this.currentSpecialist = res);
+    data.subscribe(res => this.currentUser = res);
 
     return data;
   }

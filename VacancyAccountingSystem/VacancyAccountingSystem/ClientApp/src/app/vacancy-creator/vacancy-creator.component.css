@@ -1,0 +1,12 @@
+.vacancy-form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-top: 10px;
+}
+
+.btn-create{
+  margin-top: 30px;
+}

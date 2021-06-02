@@ -1,0 +1,20 @@
+<h1 id="component-header">Create vacancy</h1>
+
+<form [formGroup]="createVacancyForm" (ngSubmit)="CreateNewVacancy()">
+
+
+  <div class="vacancy-form">
+    <label for="name">Header: </label>
+    <input type="text" id="name" formControlName="Header" />
+    <label for="name">Requirements: </label>
+    <input type="text" id="requirements" formControlName="Requirements" />
+    <label for="name">Offers: </label>
+    <input type="text" id="offers" formControlName="Offers" />
+    <label for="name">About: </label>
+    <input type="text" id="about" formControlName="About" />
+    <label for="name">Salary: </label>
+    <input type="text" id="salary" formControlName="Salary" />
+  </div>
+
+  <button class="btn-create btn btn-outline-success">Create new vacancy</button>
+</form>

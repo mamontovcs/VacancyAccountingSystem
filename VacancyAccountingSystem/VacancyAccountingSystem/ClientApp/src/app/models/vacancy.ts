@@ -1,10 +1,12 @@
+import {Company} from './company';
+
 export class Vacancy {
-  constructor(about: string, header: string, requirements: string, offers: string, salary: number, companyName: string) {
+  constructor(about: string, header: string, requirements: string, offers: string, salary: number, company: Company) {
 
     this.header = header;
     this.requirements = requirements;
     this.offers = offers;
-    this.companyName = companyName;
+    this.company = company;
     this.about = about;
     this.salary = salary;
   }
@@ -14,6 +16,6 @@ export class Vacancy {
   header: string;
   requirements: string;
   offers: string;
-  companyName: string;
+  company: Company;
   salary: number;
 }

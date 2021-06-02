@@ -1,0 +1,27 @@
+<h1 id="component-header">My offers</h1>
+<div class="wrapper">
+  <div class="offer-list">
+    <mat-card class="offer-card" *ngFor="let vacancy of offeredVacancies">
+      <mat-card-header>
+        <mat-card-title>{{vacancy.header}}</mat-card-title>
+        <mat-card-title>{{vacancy.company.name}}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <hr>
+        <span>About company:</span>
+        <p>{{vacancy.about}}</p>
+        <hr>
+        <span>Requirements:</span>
+        <p>{{vacancy.requirements}}</p>
+        <hr>
+        <span>We offer:</span>
+        <p>{{vacancy.offers}}</p>
+        <hr>
+        <p>Salary: {{vacancy.salary ? '$ ' + vacancy.salary : 'after interview'}}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="Apply()">Apply</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

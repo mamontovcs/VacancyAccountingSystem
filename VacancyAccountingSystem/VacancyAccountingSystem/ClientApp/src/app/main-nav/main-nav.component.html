@@ -7,7 +7,8 @@
     <mat-nav-list>
       <a mat-list-item href="/profile">Profile</a>
       <a mat-list-item routerLink="/vacancies">Vacancies</a>
-      <a mat-list-item routerLink="/offers">Offers</a>
+      <a mat-list-item routerLink="/offers" *ngIf="this.auth.getCurrentUserType()==='Specialist'">Offers</a>
+      <a mat-list-item routerLink="/createvacancy" *ngIf="this.auth.getCurrentUserType()==='Company'">Create vacancy</a>
       <button class="btn btn-sm btn-danger btn-block" type="reset" (click)="this.auth.logOut()">Log out</button>
     </mat-nav-list>
   </mat-sidenav>
@@ -15,7 +16,7 @@
     <mat-toolbar color="primary">
       <div class="logo_block">
         <img src="../../assets/images/logo.png" class="logo"/>
-        <h1 class="logo_text">VacancyAccountingSystem</h1>
+        <h1 class="logo_text">Vacancy accounting system ({{this.auth.getCurrentUserType()}})</h1>
       </div>
       <button
         type="button"

@@ -24,8 +24,24 @@
   3px 3px #b6fcff;
   -webkit-transform: translateX(-3px);
   transform: translateX(-3px);
+  transition: all .4s ease;
+  -webkit-transition: all .4s ease;
 }
 
 p {
   font-size: 22px;
+}
+
+.search{
+  display: flex;
+  justify-content: center;
+}
+
+.btn-search{
+  margin-left: 20px;
+}
+
+.btn {
+  align-self: center;
+  margin-left: 15px
 }

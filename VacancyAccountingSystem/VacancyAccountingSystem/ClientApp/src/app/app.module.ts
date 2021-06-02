@@ -20,10 +20,22 @@ import {VanancyListComponent} from './vanancy-list/vanancy-list.component';
 import {AuthGuard} from './guards/auth/auth-guard.guard';
 import {FooterComponent} from './footer/footer.component';
 import {RegistrationComponent} from './registration/registration.component';
-import {MatCardModule, MatDialogModule, MatFormFieldModule, MatOptionModule, MatRadioModule, MatSelectModule} from '@angular/material';
+import {
+  MatCardModule,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatOptionModule,
+  MatRadioModule,
+  MatSelectModule,
+  MatSnackBarModule
+} from '@angular/material';
 import {UserProfileComponent} from './user-profile/user-profile.component';
 import {MatInputModule} from '@angular/material/input';
-import {VanacyInfoDialogComponent} from './vanacy-info-dialog/vanacy-info-dialog.component';
+import {VacancyInfoDialogComponent} from './vacancy-info-dialog/vacancy-info-dialog.component';
+import {OfferListComponent} from './offer-list/offer-list.component';
+import {CurrentUserSpecialistGuard} from './guards/currentUserSpecialist/current-user-specialist.guard';
+import {VacancyCreatorComponent} from './vacancy-creator/vacancy-creator.component';
+import {CurrentUserCompanyGuard} from './guards/currentUserCompany/current-user-company.guard';
 
 
 export function tokenGetter() {
@@ -40,9 +52,11 @@ export function tokenGetter() {
     FooterComponent,
     RegistrationComponent,
     UserProfileComponent,
-    VanacyInfoDialogComponent
+    VacancyInfoDialogComponent,
+    OfferListComponent,
+    VacancyCreatorComponent
   ],
-  entryComponents: [VanacyInfoDialogComponent],
+  entryComponents: [VacancyInfoDialogComponent],
   imports: [
     BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
     HttpClientModule,
@@ -51,8 +65,10 @@ export function tokenGetter() {
       {path: '', component: VanancyListComponent, canActivate: [AuthGuard]},
       {path: 'login', component: LoginComponent},
       {path: 'vacancies', component: VanancyListComponent, canActivate: [AuthGuard]},
+      {path: 'createvacancy', component: VacancyCreatorComponent, canActivate: [AuthGuard, CurrentUserCompanyGuard]},
       {path: 'registration', component: RegistrationComponent},
-      {path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard]}
+      {path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard]},
+      {path: 'offers', component: OfferListComponent, canActivate: [AuthGuard, CurrentUserSpecialistGuard]}
     ]),
     JwtModule.forRoot({
       config: {
@@ -75,7 +91,8 @@ export function tokenGetter() {
     MatSelectModule,
     MatInputModule,
     MatCardModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

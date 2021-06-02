@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VanacyInfoDialogComponent } from './vanacy-info-dialog.component';
+import { VacancyInfoDialogComponent } from './vacancy-info-dialog.component';
 
 describe('VanacyInfoDialogComponent', () => {
-  let component: VanacyInfoDialogComponent;
-  let fixture: ComponentFixture<VanacyInfoDialogComponent>;
+  let component: VacancyInfoDialogComponent;
+  let fixture: ComponentFixture<VacancyInfoDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ VanacyInfoDialogComponent ]
+      declarations: [ VacancyInfoDialogComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(VanacyInfoDialogComponent);
+    fixture = TestBed.createComponent(VacancyInfoDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,11 +1,14 @@
 <h2 mat-dialog-title>{{vacancy.header}}</h2>
 <mat-dialog-content class="mat-typography">
-  <h2>{{vacancy.companyName}}</h2>
+  <h1>{{vacancy.company.name}}</h1>
   <hr>
+  <span>About company:</span>
   <p>{{vacancy.about}}</p>
   <hr>
+  <span>Requirements:</span>
   <p>{{vacancy.requirements}}</p>
   <hr>
+  <span>We offer:</span>
   <p>{{vacancy.offers}}</p>
   <hr>
   <p>Salary: {{vacancy.salary ? '$ ' + vacancy.salary : 'after interview'}}</p>

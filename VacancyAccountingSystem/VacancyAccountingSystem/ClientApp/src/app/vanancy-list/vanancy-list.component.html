@@ -1,13 +1,17 @@
+<h1 id="component-header">Vacancies</h1>
 <div class="wrapper">
-  <mat-form-field class="example-full-width">
-    <mat-label>Key word</mat-label>
-    <input matInput>
-  </mat-form-field>
+  <div class="search">
+    <mat-form-field class="example-full-width">
+      <mat-label>Key word</mat-label>
+      <input matInput [(ngModel)]="keyWord">
+    </mat-form-field>
+    <button (click)="OnSearchClick(keyWord)" type="button" class="btn btn-primary">Search</button>
+  </div>
   <div class="vacancy-list">
     <mat-card class="vacancy-card" *ngFor="let vacancy of vacancies">
       <mat-card-header>
         <mat-card-title>{{vacancy.header}}</mat-card-title>
-        <mat-card-subtitle>{{vacancy.companyName}}</mat-card-subtitle>
+        <mat-card-title>{{vacancy.company?.name}}</mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <hr>
