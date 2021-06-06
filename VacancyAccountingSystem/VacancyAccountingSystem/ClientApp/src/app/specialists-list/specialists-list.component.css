@@ -1,4 +1,18 @@
-.vacancy-card {
+.search{
+  display: flex;
+  justify-content: center;
+}
+
+.btn-search{
+  margin-left: 20px;
+}
+
+.btn {
+  align-self: center;
+  margin-left: 15px
+}
+
+.specialist-card {
   margin: 20px 20px 20px;
   border-radius: 30px;
   background-color: #d9e6ff;
@@ -9,7 +23,7 @@
   justify-content: center;
 }
 
-.vacancy-list {
+.specialist-list {
   padding-bottom: 50px
 }
 
@@ -34,18 +48,4 @@
 
 p {
   font-size: 22px;
-}
-
-.search{
-  display: flex;
-  justify-content: center;
-}
-
-.btn-search{
-  margin-left: 20px;
-}
-
-.btn {
-  align-self: center;
-  margin-left: 15px
 }

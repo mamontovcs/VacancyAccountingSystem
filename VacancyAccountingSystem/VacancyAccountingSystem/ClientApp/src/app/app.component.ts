@@ -10,4 +10,8 @@ export class AppComponent {
 
   constructor(private auth: AuthService) {
   }
+
+  IsUserAuthenticated() {
+    return this.auth.isUserAuthenticated();
+  }
 }

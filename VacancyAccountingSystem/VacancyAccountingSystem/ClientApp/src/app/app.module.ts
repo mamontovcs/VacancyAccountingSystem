@@ -21,7 +21,7 @@ import {AuthGuard} from './guards/auth/auth-guard.guard';
 import {FooterComponent} from './footer/footer.component';
 import {RegistrationComponent} from './registration/registration.component';
 import {
-  MatCardModule,
+  MatCardModule, MatCheckboxModule,
   MatDialogModule,
   MatFormFieldModule,
   MatOptionModule,
@@ -36,6 +36,8 @@ import {OfferListComponent} from './offer-list/offer-list.component';
 import {CurrentUserSpecialistGuard} from './guards/currentUserSpecialist/current-user-specialist.guard';
 import {VacancyCreatorComponent} from './vacancy-creator/vacancy-creator.component';
 import {CurrentUserCompanyGuard} from './guards/currentUserCompany/current-user-company.guard';
+import { RequestsListComponent } from './requests-list/requests-list.component';
+import { SpecialistsListComponent } from './specialists-list/specialists-list.component';
 
 
 export function tokenGetter() {
@@ -54,7 +56,9 @@ export function tokenGetter() {
     UserProfileComponent,
     VacancyInfoDialogComponent,
     OfferListComponent,
-    VacancyCreatorComponent
+    VacancyCreatorComponent,
+    RequestsListComponent,
+    SpecialistsListComponent
   ],
   entryComponents: [VacancyInfoDialogComponent],
   imports: [
@@ -66,6 +70,8 @@ export function tokenGetter() {
       {path: 'login', component: LoginComponent},
       {path: 'vacancies', component: VanancyListComponent, canActivate: [AuthGuard]},
       {path: 'createvacancy', component: VacancyCreatorComponent, canActivate: [AuthGuard, CurrentUserCompanyGuard]},
+      {path: 'specialists-list', component: SpecialistsListComponent, canActivate: [AuthGuard, CurrentUserCompanyGuard]},
+      {path: 'requests', component: RequestsListComponent, canActivate: [AuthGuard, CurrentUserCompanyGuard]},
       {path: 'registration', component: RegistrationComponent},
       {path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard]},
       {path: 'offers', component: OfferListComponent, canActivate: [AuthGuard, CurrentUserSpecialistGuard]}
@@ -92,7 +98,8 @@ export function tokenGetter() {
     MatInputModule,
     MatCardModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

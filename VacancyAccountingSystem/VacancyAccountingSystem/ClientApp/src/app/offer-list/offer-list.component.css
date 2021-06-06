@@ -17,6 +17,10 @@
   -webkit-transition: all .4s ease;
 }
 
+.mat-card:not(:hover) {
+  transition: 1.5s;
+}
+
 .offer-card {
   margin: 20px 20px 20px;
   border-radius: 30px;

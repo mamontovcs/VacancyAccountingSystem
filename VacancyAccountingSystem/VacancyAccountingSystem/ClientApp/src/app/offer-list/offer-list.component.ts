@@ -26,12 +26,12 @@ export class OfferListComponent implements OnInit {
       'Marketing Creatio — інструменти для управління маркетинговими кампаніями та комунікаціями.\n' +
       'Service Creatio — рішення для прискорення процесів обслуговування клієнтів.\n' +
       'Команди випускають оновлення кожні 5 тижнів, дотримуючись принципу Continuous Delivery / Continuous Integration. Вихід нових версій Creatio базується на принципах зворотної сумісності, які підтримуються для всіх публічних API та моделей даних.',
-      'Middle .Net developer', 'C# SQL', 'many cool things', 3300, new Company(undefined, 'Terrasoft', '', '', '')));
+      'Middle .Net developer', 'C# SQL', 'many cool things', 3300, new Company(undefined, 'Terrasoft', undefined, '', '')));
     this.offeredVacancies.push(new Vacancy('One of the world\'s largest providers of products and services to the energy industry has a need to develop and support enterprise information system in Oil & Gas domain.\n' +
       'Project is related to collection, visualization and analysis (including real-time) of the data received from production and test wells evaluation.',
-      'Senior .Net developer', 'C# SQL Angular Docker', 'nothing', 3000, new Company(undefined, 'Luxoft', '', '', '')));
+      'Senior .Net developer', 'C# SQL Angular Docker', 'nothing', 3000, new Company(undefined, 'Luxoft', undefined, '', '')));
     this.offeredVacancies.push(new Vacancy('Intern for Oil and Gas project',
-      'Intern .Net developer', 'C# SQL WPF', 'medical insurance', 250, new Company(undefined, 'Luxoft', '', '', '')));
+      'Intern .Net developer', 'C# SQL WPF', 'medical insurance', 250, new Company(undefined, 'Luxoft', undefined, '', '')));
   }
 
   Apply() {

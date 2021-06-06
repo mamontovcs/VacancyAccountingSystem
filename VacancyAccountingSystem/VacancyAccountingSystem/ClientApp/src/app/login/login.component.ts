@@ -11,7 +11,7 @@ import {environment} from '../../environments/environment';
 })
 export class LoginComponent implements OnInit {
 
-  private invalidLogin: boolean;
+  public invalidLogin: boolean;
 
   constructor(private http: HttpClient,
               private router: Router) {

@@ -7,16 +7,18 @@
     <mat-nav-list>
       <a mat-list-item href="/profile">Profile</a>
       <a mat-list-item routerLink="/vacancies">Vacancies</a>
-      <a mat-list-item routerLink="/offers" *ngIf="this.auth.getCurrentUserType()==='Specialist'">Offers</a>
-      <a mat-list-item routerLink="/createvacancy" *ngIf="this.auth.getCurrentUserType()==='Company'">Create vacancy</a>
-      <button class="btn btn-sm btn-danger btn-block" type="reset" (click)="this.auth.logOut()">Log out</button>
+      <a mat-list-item routerLink="/offers" *ngIf="IsSpecialist()">Offers</a>
+      <a mat-list-item routerLink="/requests" *ngIf="IsCompany()">Requests</a>
+      <a mat-list-item routerLink="/specialists-list" *ngIf="IsCompany()">Specialists</a>
+      <a mat-list-item routerLink="/createvacancy" *ngIf="IsCompany()">Create vacancy</a>
+      <button class="btn btn-sm btn-danger btn-block" type="reset" (click)="LogOut()">Log out</button>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
       <div class="logo_block">
         <img src="../../assets/images/logo.png" class="logo"/>
-        <h1 class="logo_text">Vacancy accounting system ({{this.auth.getCurrentUserType()}})</h1>
+        <h1 class="logo_text">Vacancy accounting system ({{GetCurrentUserType()}})</h1>
       </div>
       <button
         type="button"

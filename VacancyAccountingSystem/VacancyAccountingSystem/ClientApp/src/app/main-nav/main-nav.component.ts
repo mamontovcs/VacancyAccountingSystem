@@ -21,4 +21,19 @@ export class MainNavComponent {
               private auth: AuthService) {
   }
 
+  IsSpecialist() {
+    return this.auth.getCurrentUserType() === 'Specialist';
+  }
+
+  IsCompany() {
+    return this.auth.getCurrentUserType() === 'Company';
+  }
+
+  GetCurrentUserType() {
+    return this.auth.getCurrentUserType();
+  }
+
+  LogOut() {
+    return this.auth.logOut();
+  }
 }

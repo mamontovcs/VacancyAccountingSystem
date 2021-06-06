@@ -6,6 +6,7 @@ import {Specialist} from '../models/specialist';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from 'src/environments/environment';
 import {Login} from '../models/login';
+import {Image} from '../models/image';
 
 @Component({
   selector: 'app-registration',
@@ -73,7 +74,7 @@ export class RegistrationComponent implements OnInit {
         this.specialistRegistrationForm.controls.EmploymentOption.value,
         this.specialistRegistrationForm.controls.PhoneNumber.value,
         this.specialistRegistrationForm.controls.Skype.value,
-        this.generatePhotoName(this.specialistRegistrationForm.controls.Email.value),
+        new Image(this.generatePhotoName(this.specialistRegistrationForm.controls.Email.value)),
         this.specialistRegistrationForm.controls.Name.value,
         this.specialistRegistrationForm.controls.Surname.value,
         this.specialistRegistrationForm.controls.Position.value
@@ -101,7 +102,7 @@ export class RegistrationComponent implements OnInit {
         new Login(this.companyRegistrationForm.controls.Email.value,
           this.companyRegistrationForm.controls.Password.value, 'Company'),
         this.companyRegistrationForm.controls.Name.value,
-        this.generatePhotoName(this.companyRegistrationForm.controls.Email.value),
+        new Image(this.generatePhotoName(this.companyRegistrationForm.controls.Email.value)),
         this.companyRegistrationForm.controls.Website.value,
         this.companyRegistrationForm.controls.AboutCompany.value,
       );

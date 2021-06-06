@@ -1,10 +1,12 @@
 // @ts-ignore
 import {Login} from './login';
+import {Image} from './image';
 
 export class Specialist {
+  // tslint:disable-next-line:no-shadowed-variable
   constructor(Login: Login, DesiredSalary: number, YearsOfExperience: number,
               Address: string, Technologies: string, EnglishLevel: string,
-              EmploymentOptions: string, PhoneNumber: string, Skype: string, PhotoPath: string,
+              EmploymentOptions: string, PhoneNumber: string, Skype: string, Image: Image,
               Name: string, Surname: string, Position: string, id?: number) {
     this.id = id;
     this.login = Login;
@@ -16,7 +18,7 @@ export class Specialist {
     this.employmentOptions = EmploymentOptions;
     this.phoneNumber = PhoneNumber;
     this.skype = Skype;
-    this.photoPath = PhotoPath;
+    this.image = Image;
     this.name = Name;
     this.surname = Surname;
     this.position = Position;
@@ -36,7 +38,7 @@ export class Specialist {
   employmentOptions: string;
   phoneNumber: string;
   skype: string;
-  photoPath: string;
+  image: Image;
   position: string;
   guid: string;
 }

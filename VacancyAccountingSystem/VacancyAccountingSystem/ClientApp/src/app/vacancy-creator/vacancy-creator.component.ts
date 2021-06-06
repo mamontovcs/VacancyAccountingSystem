@@ -23,6 +23,8 @@ export class VacancyCreatorComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private http: HttpClient,
               private userService: UserService) {
+
+
   }
 
   ngOnInit() {
@@ -33,24 +35,24 @@ export class VacancyCreatorComponent implements OnInit {
       Offers: new FormControl(''),
       Salary: new FormControl('')
     });
+
+    this.currentCompany = this.userService.getCurrentUser();
+
+    this.currentCompany.subscribe(data => {
+      this.company = data;
+    });
   }
 
   CreateNewVacancy() {
-    this.currentCompany = this.userService.getCurrentUser();
 
-    // FIX UPLOADING HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    this.currentCompany.subscribe(data => {
-      this.company = data;
+    this.newVacancy = new Vacancy(this.createVacancyForm.controls.About.value,
+      this.createVacancyForm.controls.Header.value,
+      this.createVacancyForm.controls.Requirements.value,
+      this.createVacancyForm.controls.Offers.value,
+      Number(this.createVacancyForm.controls.Salary.value),
+      this.company);
 
-      this.newVacancy = new Vacancy(this.createVacancyForm.controls.About.value,
-        this.createVacancyForm.controls.Header.value,
-        this.createVacancyForm.controls.Requirements.value,
-        this.createVacancyForm.controls.Offers.value,
-        this.createVacancyForm.controls.Salary.value,
-        data);
-
-       console.log(this.newVacancy);
-    });
+    console.log(this.newVacancy);
 
     this.http.post(environment.api_url + 'api/vacancies/add', JSON.stringify(this.newVacancy), {
       headers: new HttpHeaders({

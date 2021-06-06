@@ -1,0 +1,44 @@
+<h1 id="component-header">Specialists</h1>
+<div class="wrapper">
+  <div class="search">
+    <mat-form-field class="example-full-width">
+      <mat-label>Key word</mat-label>
+      <input matInput [(ngModel)]="keyWord">
+    </mat-form-field>
+    <button (click)="OnSearchClick(keyWord)" type="button" class="btn btn-primary">Search</button>
+  </div>
+  <div class="specialist-list">
+    <mat-card class="specialist-card" *ngFor="let specialist of specialistsView">
+      <mat-card-header>
+        <mat-card-title>{{specialist.name + ' ' + specialist.surname}}</mat-card-title>
+        <mat-card-title>{{specialist.position}}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <hr>
+        <span>Technologies:</span>
+        <p>
+          {{specialist.technologies}}
+        </p>
+        <hr>
+        <span>Years of experience:</span>
+        <p>
+          {{specialist.yearsOfExperience}}
+        </p>
+        <hr>
+        <span>English level:</span>
+        <p>
+          {{specialist.englishLevel}}
+        </p>
+        <hr>
+        <span>Employment:</span>
+        <p>
+          {{specialist.employmentOptions}}
+        </p>
+        <hr>
+        <span>Phone:</span>
+        <p>
+          {{specialist.phoneNumber}}
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>

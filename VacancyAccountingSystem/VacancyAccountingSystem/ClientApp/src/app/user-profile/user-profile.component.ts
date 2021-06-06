@@ -9,6 +9,7 @@ import {Login} from '../models/login';
 import {AuthService} from '../services/auth.service';
 import {Company} from '../models/company';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {Image} from '../models/image';
 
 @Component({
   selector: 'app-user-profile',
@@ -25,6 +26,7 @@ export class UserProfileComponent implements OnInit {
   companyProfileForm: FormGroup;
   image: string;
 
+  // tslint:disable-next-line:max-line-length
   constructor(private http: HttpClient, private userService: UserService, private authService: AuthService, private _snackBar: MatSnackBar) {
   }
 
@@ -64,8 +66,8 @@ export class UserProfileComponent implements OnInit {
       this.currentSpecialist.subscribe(data => this.specialistProfileForm.get('EnglishLevel').setValue(data.englishLevel));
       this.currentSpecialist.subscribe(data => this.specialistProfileForm.get('Email').setValue(data.login.email));
       this.currentSpecialist.subscribe(data => this.specialistProfileForm.get('Password').setValue(data.login.password));
-      this.currentSpecialist.subscribe(data => this.specialistProfileForm.get('PhotoPath').setValue(data.photoPath));
-      this.currentSpecialist.subscribe(data => this.image = environment.api_url + 'api/file/photo/' + data.photoPath);
+      this.currentSpecialist.subscribe(data => this.specialistProfileForm.get('PhotoPath').setValue(data.image.imageTitle));
+      this.currentSpecialist.subscribe(data => this.image = environment.api_url + 'api/file/photo/' + data.image.imageTitle);
     } else {
       this.companyProfileForm = new FormGroup({
         Name: new FormControl(),
@@ -79,14 +81,14 @@ export class UserProfileComponent implements OnInit {
 
       this.currentCompany = this.userService.getCurrentUser();
 
-      this.currentCompany.subscribe(data => this.image = environment.api_url + 'api/file/photo/' + data.photoPath);
+      this.currentCompany.subscribe(data => this.image = environment.api_url + 'api/file/photo/' + data.image.imageTitle);
       this.currentCompany.subscribe(data => this.companyProfileForm.get('Id').setValue(data.id));
       this.currentCompany.subscribe(data => this.companyProfileForm.get('Name').setValue(data.name));
       this.currentCompany.subscribe(data => this.companyProfileForm.get('About').setValue(data.aboutCompany));
       this.currentCompany.subscribe(data => this.companyProfileForm.get('WebSite').setValue(data.website));
       this.currentCompany.subscribe(data => this.companyProfileForm.get('Password').setValue(data.login.password));
       this.currentCompany.subscribe(data => this.companyProfileForm.get('Email').setValue(data.login.email));
-      this.currentCompany.subscribe(data => this.companyProfileForm.get('PhotoPath').setValue(data.photoPath));
+      this.currentCompany.subscribe(data => this.companyProfileForm.get('PhotoPath').setValue(data.image.imageTitle));
     }
   }
 
@@ -105,7 +107,7 @@ export class UserProfileComponent implements OnInit {
           this.specialistProfileForm.get('EmploymentOption').value,
           this.specialistProfileForm.get('PhoneNumber').value,
           this.specialistProfileForm.get('Skype').value,
-          this.specialistProfileForm.get('PhotoPath').value,
+          new Image(this.specialistProfileForm.get('PhotoPath').value),
           this.specialistProfileForm.get('Name').value,
           this.specialistProfileForm.get('Surname').value,
           this.specialistProfileForm.get('Position').value,
@@ -122,7 +124,7 @@ export class UserProfileComponent implements OnInit {
         console.log(err);
       });
 
-      window.location.reload();
+      // window.location.reload();
     } else {
       this._snackBar.open('Updating for company profile will be added soon!', 'Close');
     }
