@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
+using VacancyAccountingSystem.Models;
+using VacancyAccountingSystem.Repositories;
 
 namespace VacancyAccountingSystem.Controllers
 {
@@ -12,23 +10,42 @@ namespace VacancyAccountingSystem.Controllers
     [ApiController]
     public class FileController : Controller
     {
+        private IRepository<Image> _repository;
+
+        public FileController(IRepository<Image> repository)
+        {
+            _repository = repository;
+        }
+
         [HttpPost, Route("photo"), DisableRequestSizeLimit]
         public IActionResult PostPhoto()
         {
             var file = Request.Form.Files[0];
-            var folderName = Path.Combine("Resources", "Images");
-            var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+            //var folderName = Path.Combine("Resources", "Images");
+            //var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
 
-            if (file.Length > 0)
-            {
-                var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-                var fullPath = Path.Combine(pathToSave, fileName);
+            //if (file.Length > 0)
+            //{
+            //    var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+            //    var fullPath = Path.Combine(pathToSave, fileName);
 
-                using (var stream = new FileStream(fullPath, FileMode.Create))
-                {
-                    file.CopyTo(stream);
-                }
-            }
+            //    using (var stream = new FileStream(fullPath, FileMode.Create))
+            //    {
+            //        file.CopyTo(stream);
+            //    }
+            //}
+
+            Image img = new Image();
+            img.ImageTitle = file.FileName;
+
+            MemoryStream ms = new MemoryStream();
+            file.CopyTo(ms);
+            img.ImageData = ms.ToArray();
+
+            ms.Close();
+            ms.Dispose();
+
+            _repository.Add(img);
 
             return Ok();
         }
@@ -36,12 +53,14 @@ namespace VacancyAccountingSystem.Controllers
         [HttpGet("photo/{photoPath}"), DisableRequestSizeLimit]
         public IActionResult GetPhoto(string photoPath)
         {
+            var image = _repository.GetAll().FirstOrDefault(x => x.ImageTitle == photoPath && x.ImageData != null);
+
             var folderName = Path.Combine("Resources", "Images");
             var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
 
             var fullPath = Path.Combine(pathToSave, photoPath);
 
-            return PhysicalFile(fullPath, "application/octet-stream", photoPath);
+            return File(image.ImageData, "image/jpeg");
         }
     }
 }

@@ -29,7 +29,7 @@ namespace VacancyAccountingSystem.Models
         public string About { get; set; }
 
         [ForeignKey("CompanyFK")]
-        public virtual Company Company { get; set; }
+        public Company Company { get; set; }
 
         public int? CompanyFK { get; set; }
 

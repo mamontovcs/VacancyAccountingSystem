@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -28,7 +29,7 @@ namespace VacancyAccountingSystem.Repositories
 
         public IEnumerable<Login> GetAll()
         {
-            return _databaseContext.Logins.ToList();
+            return _databaseContext.Logins.Include(x => x.User).ToList();
         }
 
         public bool Remove(int id)

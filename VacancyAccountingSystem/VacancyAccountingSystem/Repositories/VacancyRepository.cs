@@ -18,7 +18,11 @@ namespace VacancyAccountingSystem.Repositories
 
         public void Add(Vacancy vacancy)
         {
+            vacancy.CompanyFK = vacancy.Company.Id;
+            vacancy.Company = null; // workaround
+
             _databaseContext.Vacancies.Add(vacancy);
+
             _databaseContext.SaveChanges();
         }
 

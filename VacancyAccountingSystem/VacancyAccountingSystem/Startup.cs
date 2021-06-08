@@ -32,7 +32,7 @@ namespace VacancyAccountingSystem
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DatabaseContext>(
-            options => options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=VacancyAccountingSystem;Trusted_Connection=True;"));
+            options => options.UseSqlServer("Server=tcp:vacancyaccountingsystemdbserver.database.windows.net,1433;Initial Catalog=mydiplomasqlDatabase;Persist Security Info=False;User ID=skrogers;Password=Karma2000;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"));
 
             services.AddCors(opt =>
             {
@@ -40,7 +40,8 @@ namespace VacancyAccountingSystem
                 {
                     builder.AllowAnyOrigin()
                     .AllowAnyHeader()
-                    .AllowAnyMethod();
+                    .AllowAnyMethod()
+                    .WithOrigins("http://localhost:4200"); ;
                 });
             });
 
@@ -56,10 +57,10 @@ namespace VacancyAccountingSystem
 
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
-            services.AddSpaStaticFiles(configuration =>
-            {
-                configuration.RootPath = "ClientApp/dist";
-            });
+            //services.AddSpaStaticFiles(configuration =>
+            //{
+            //    configuration.RootPath = "ClientApp/dist";
+            //});
 
             services.AddAuthentication(opt =>
             {
@@ -83,6 +84,7 @@ namespace VacancyAccountingSystem
 
             services.AddScoped<IRepository<Vacancy>, VacancyRepository>();
             services.AddScoped<IRepository<Company>, CompanyRepository>();
+            services.AddScoped<IRepository<Image>, ImageRepository>();
             services.AddScoped<IRepository<Login>, LoginRepository>();
             services.AddScoped<IRepository<Specialist>, SpecialistRepository>();
             services.AddScoped<ISpecialistRepositoryDecorator, SpecialistRepositoryDecorator>();
@@ -104,20 +106,17 @@ namespace VacancyAccountingSystem
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            if (!env.IsDevelopment())
-            {
-                app.UseSpaStaticFiles();
-            }
+            //if (!env.IsDevelopment())
+            //{
+            //    app.UseSpaStaticFiles();
+            //}
 
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseHttpsRedirection();
 
-            app.UseCors(x => x
-            .AllowAnyOrigin()
-            .AllowAnyMethod()
-            .AllowAnyHeader());
+            app.UseCors("EnableCORS");
 
             app.UseStaticFiles(new StaticFileOptions()
             {

@@ -22,6 +22,6 @@ namespace VacancyAccountingSystem.Models
         public virtual Login Login { get; set; }
 
         public int? LoginFK { get; set; }
-        public string PhotoPath { get; set; }
+        public Image Image { get; set; }
     }
 }

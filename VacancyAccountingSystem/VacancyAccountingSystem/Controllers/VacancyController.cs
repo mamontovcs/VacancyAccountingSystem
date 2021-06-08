@@ -27,6 +27,12 @@ namespace VacancyAccountingSystem.Controllers
             return _vacancyRepository.GetAll();
         }
 
+        [HttpGet, Route("getByKeyWord/{keyWord}")]
+        public IEnumerable<Vacancy> GetByKeyWord(string keyWord)
+        {
+            return _vacancyRepository.GetAll().Where(x=>x.Header.ToLower().Contains(keyWord.ToLower()));
+        }
+
 
         [HttpPost, Route("add")]
         //[Authorize(Roles = "Manager")]

@@ -124,7 +124,7 @@ export class UserProfileComponent implements OnInit {
         console.log(err);
       });
 
-      // window.location.reload();
+       window.location.reload();
     } else {
       this._snackBar.open('Updating for company profile will be added soon!', 'Close');
     }

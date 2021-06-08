@@ -15,6 +15,9 @@ namespace VacancyAccountingSystem.Models
 
         public string Type { get; set; }
 
+        [ForeignKey("UserFK")]
         public User User { get; set; }
+
+        public int? UserFK { get; set; }
     }
 }

@@ -50,6 +50,7 @@ namespace VacancyAccountingSystem.Controllers
                     credentials);
 
                 var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
+
                 return Ok(new { Token = tokenString });
             }
 

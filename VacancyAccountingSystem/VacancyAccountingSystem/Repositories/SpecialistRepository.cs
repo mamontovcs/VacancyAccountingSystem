@@ -16,7 +16,14 @@ namespace VacancyAccountingSystem.Repositories
 
         public void Add(Specialist entity)
         {
-            _databaseContext.Add(entity);
+            // TODO: Need to investigate how to do it in normal way ....
+            _databaseContext.Logins.Add(entity.Login);
+            _databaseContext.SaveChanges();
+
+            var loginId = _databaseContext.Logins.FirstOrDefault(x => x.Email == entity.Login.Email).Id;
+
+            entity.LoginFK = loginId;
+            _databaseContext.Specialists.Add(entity);
             _databaseContext.SaveChanges();
         }
 
@@ -27,7 +34,7 @@ namespace VacancyAccountingSystem.Repositories
 
         public IEnumerable<Specialist> GetAll()
         {
-            return _databaseContext.Specialists.Include(x => x.Login).ToList();
+            return _databaseContext.Specialists.Include(x => x.Login).Include(x => x.Image).ToList();
         }
 
         public bool Remove(int id)
@@ -40,13 +47,24 @@ namespace VacancyAccountingSystem.Repositories
 
         public bool Update(Specialist entity)
         {
-            var specToUpdate = _databaseContext.Specialists.FirstOrDefault(x => x.Id == entity.Id);
+            var toDelete = _databaseContext.Specialists.FirstOrDefault(x => x.Id == entity.Id);
 
-            if (specToUpdate != null)
+            if (toDelete != null)
             {
-                _databaseContext.Specialists.Remove(specToUpdate);
-                _databaseContext.Specialists.Add(entity);
+                _databaseContext.Specialists.Remove(toDelete);
+                _databaseContext.SaveChanges();
 
+                // Code duplication. Need to find better way to do it...
+                _databaseContext.Logins.Remove(_databaseContext.Logins.FirstOrDefault(x => x.Id == toDelete.Id));
+                _databaseContext.SaveChanges();
+
+                _databaseContext.Logins.Add(entity.Login);
+                _databaseContext.SaveChanges();
+
+                var loginId = _databaseContext.Logins.FirstOrDefault(x => x.Email == entity.Login.Email).Id;
+
+                entity.LoginFK = loginId;
+                _databaseContext.Specialists.Add(entity);
                 _databaseContext.SaveChanges();
 
                 return true;
